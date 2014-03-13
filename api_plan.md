@@ -53,6 +53,11 @@ very beginner-user friendly.
 * What about downsampling?
 * What about the minimum number of cells sharing a particular gene/event?
     * Should specify this in the initialization of the data object.
+* Filtering miso events? Using the ci_halves_max or just ci_diff? How to
+expose this to the user?
+* how to integrate other data such as conservation of exons or genes? Exon
+info files?
+* What about the Biomark data? Are we just going to not support it?
 
 #### Examples for use
 
@@ -63,6 +68,8 @@ and a more typical input without those values.
 examples.
 * Also need to provide data somehow, but don't want to have a gigantic repo.
     * Maybe a supplementary `.zip` file
+    * Host the files on Sauron? Maybe the file paths in the google
+    spreadsheet could be a URL...
 
 ## Outputs
 
@@ -87,7 +94,6 @@ for older computers and we may need to move to a database instead.
 
 User-facing
 
-* Outlier detection
 * PCA
 * JSD
 * Bimodal gene expression
@@ -97,19 +103,27 @@ User-facing
 * Clustering
 * ANOVA?
 * RPKM barplots saturation analysis (ask Patrick)
+* histograms of psi scores?
+* histograms of expression?
+* Scatterplots of rpkm vs psi?
 
 Internal
 
 * Switchy score (needs a new name..)
+* Outlier detection (visualized on PCA)
 
 #### Plotting objects
 
-* PCA
+Except when specified, these will be used for both splicing and gene
+expression.
+
+* PCA (This should be in seaborn)
     * Scatterplot with vectors as usual
     * Percent explained by PCs (up to 10-20?)
     * Loadings of each gene in the top 2 PCs
     * Violin plots of the top explaining genes
-* JSD
+    * Show outliers
+* JSD (seaborn?)
     * Heatmap
     * Violin plots of high JSD events
     * Loadings of high JSD events to compare JSD values
@@ -117,3 +131,54 @@ Internal
     * General use for stuff like looking at all events in a celltype,
     or events of different modalities
 * Bar plots for binning RPKM events to show high vs low expression
+* Clusterplot
+* Splicing modality detection
+    * Lavalamp of the different modalities
+    * PCA
+
+## Example/Tutorial
+
+Need to have a really complete example ipython notebook. Should have these
+actions in the following order:
+
+1. Install library
+2. Import library
+3. Instantiate data object
+    1. Filter gene expression and splicing events based on number of cells
+    sharing this event in that celltype?
+4. Gene Expression analysis
+    1. Histograms of expression for each cell (sharex=True, sharey=True)
+    2. Breakdown of RPKMs of different events.
+    3. Detect outliers
+    4. Show outliers on gene expression PCA
+    5. Show clusterplot of genes?
+    6. Detect bimodal gene expression, show violin plots
+    7. Detect high-JSD events, show violin plots
+    8. ANOVA?
+5. Splicing analysis
+    1. Histogram of splicing scores for each cell
+    1. Lava lamp plots of all events.
+    2. Show PCA
+    3. Detect modalities
+        1. Histograms of splicing scores within modalities
+        2. Lava lamps
+        3. PCA?
+6. Splicing + Gene expression analysis
+    1. Scatterplot of RPKMs vs expression (need miso event to ensembl ID
+    matching)
+    2. MIke's RBPs and splicing analysis?
+
+## Python dependencies
+
+* pandas (numpy, scipy, matplotlib)
+* matplotlib
+* gspread
+* brewer2mpl
+* seaborn (statsmodels)
+* IPython?
+
+## Naming scheme
+
+* CamelCase for classes only
+* separated_by_underscores for functions
+* Full names as much as possible. E.g. `gene_symbol` instead of `gsymbol`
