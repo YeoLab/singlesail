@@ -170,7 +170,7 @@ actions in the following order:
 4. Gene Expression analysis
     1. Histograms of expression for each cell (sharex=True, sharey=True)
     2. Breakdown of RPKMs of different events.
-    3. De tect outliers
+    3. Detect outliers
     4. Show outliers on gene expression PCA
     5. Show clusterplot of genes?
     6. Detect bimodal gene expression, show violin plots
