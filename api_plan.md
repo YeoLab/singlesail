@@ -29,7 +29,7 @@ With at least the following columns:
 * Gene expression file path
     * however, need to also be compatible with a matrix of gene expression
     values
-* Gene expression filetype
+* Splicing filetype
     * valid values: our RPKM files, Cufflinks, DESeq files
 * Miso summary file path
 * Miso splice type
@@ -67,6 +67,10 @@ expose this to the user?
 * how to integrate other data such as conservation of exons or genes? Exon
 info files?
 * What about the Biomark data? Are we just going to not support it?
+* How to output the data of each plot such that users can change the
+visualization themselves?
+* Statistical analysis to be confident that certain events truly ARE high or
+low variance.
 
 #### Examples for use
 
@@ -117,6 +121,8 @@ User-facing
 * histograms of psi scores?
 * histograms of expression?
 * Scatterplots of rpkm vs psi?
+    * High variance events vs RPKMs
+* Percent mapping
 
 Internal
 
@@ -142,6 +148,7 @@ expression.
     * General use for stuff like looking at all events in a celltype,
     or events of different modalities
 * Bar plots for binning RPKM events to show high vs low expression
+* Boxplots of expression for each sample (like the bar plots above)
 * Clusterplot
 * Splicing modality detection
     * Lavalamp of the different modalities
@@ -160,7 +167,7 @@ actions in the following order:
 4. Gene Expression analysis
     1. Histograms of expression for each cell (sharex=True, sharey=True)
     2. Breakdown of RPKMs of different events.
-    3. Detect outliers
+    3. De tect outliers
     4. Show outliers on gene expression PCA
     5. Show clusterplot of genes?
     6. Detect bimodal gene expression, show violin plots
@@ -168,16 +175,19 @@ actions in the following order:
     8. ANOVA?
 5. Splicing analysis
     1. Histogram of splicing scores for each cell
+    2. Subset on variance, high medium low?
     1. Lava lamp plots of all events.
     2. Show PCA
     3. Detect modalities
         1. Histograms of splicing scores within modalities
         2. Lava lamps
         3. PCA?
+        4. Barplots of modalities
+    4. High JSD events, show violin plots
 6. Splicing + Gene expression analysis
     1. Scatterplot of RPKMs vs expression (need miso event to ensembl ID
     matching)
-    2. MIke's RBPs and splicing analysis?
+    2. Mike's RBPs and splicing analysis?
 
 ## Python dependencies
 
