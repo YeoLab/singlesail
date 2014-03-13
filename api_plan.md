@@ -82,7 +82,7 @@ something else.
 Both RPKM and splicing data will be transformed to be in the "tidy" format,
 such as:
 
-event_name  sample_id   miso_posterior_mean celltype    gene_name   ensembl
+    event_name  sample_id   miso_posterior_mean celltype    gene_name   ensembl
 
 These can be transformed to `event_name` x `sample_id` matrices easily using
 `pandas`'s `pivot()` function. But this format makes
