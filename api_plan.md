@@ -60,6 +60,7 @@ very beginner-user friendly.
     for the most part, but we also want to be flexible to power users who
     want to change something.
 * What about downsampling?
+* What about mapping gene IDs to MISO and whatever cufflinks/DESeq uses?
 * What about the minimum number of cells sharing a particular gene/event?
     * Should specify this in the initialization of the data object.
 * Filtering miso events? Using the ci_halves_max or just ci_diff? How to
