@@ -14,7 +14,10 @@ inputs, such as:
 For now, we will only be compatible with MISO for splicing scores. I'm not
 sure what other programs out there give a 0-1 score for splicing.
 
-### Concerns and Considerations
+We must have at a minimum, all the functionality of Fluidigm's "SingulaR" and
+ much more.
+
+### Input files
 
 One sample info file, either a google spreadsheet or a tab-delimited file.
 With at least the following columns:
@@ -39,6 +42,12 @@ program.
     map this to the ColorBrewer Set1 red/blue instead of using the
     `matplotlib` red/blue.
 * Plotting symbol
+
+#### Tunable parameters
+
+* Number of cells sharing an event/gene for it to be valid
+* number of vectors plotted for PCA
+* Number of modalities detected?
 
 #### Remaining questions
 
@@ -70,6 +79,7 @@ examples.
     * Maybe a supplementary `.zip` file
     * Host the files on Sauron? Maybe the file paths in the google
     spreadsheet could be a URL...
+
 
 ## Outputs
 
