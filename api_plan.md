@@ -85,7 +85,8 @@ such as:
     event_name  sample_id   miso_posterior_mean celltype    gene_name   ensembl
 
 These can be transformed to `event_name` x `sample_id` matrices easily using
-`pandas`'s `pivot()` function. But this format makes
+`pandas`'s `pivot()` function. But this format makes it very easy for
+creating violin plots and counting numbers of events via `groupby`s.
 
 It is possible that storing data in memory in this format becomes infeasible
 for older computers and we may need to move to a database instead.
