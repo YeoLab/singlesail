@@ -79,7 +79,8 @@ and a more typical input without those values.
 
 * Need to download sequencing data for existing single cell datasets for
 examples.
-* Also need to provide data < what data ?> somehow, but don't want to have a gigantic repo.
+* Also need to provide example data somehow,
+but don't want to have a gigantic repo.
     * Maybe a supplementary `.zip` file
     * Host the files on Sauron? Maybe the file paths in the google
     spreadsheet could be a URL...
@@ -113,7 +114,7 @@ User-facing
 * JSD
 * Bimodal gene expression
 * Splicing modality 
-* \ide novo\i modality clustering
+* *de novo* modality clustering
 * Correlations? Could take a long time..
 * Canonical correlation analysis?
 * Clustering
