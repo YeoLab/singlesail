@@ -4,6 +4,9 @@
 
 ### Desirata
 
+Question: WHO is the target audience? Other bioinformaticians or people who
+don't know how to code?
+
 We want this package to be THE de facto standard for analyzing single-cell
 data. Thus, we need to be compatible with a variety of expression data
 inputs, such as:
