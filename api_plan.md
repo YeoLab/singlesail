@@ -35,7 +35,8 @@ With at least the following columns:
 * Splicing filetype
     * valid values: our RPKM files, Cufflinks, DESeq files
 * Miso summary file path
-* Miso splice type
+* Miso splice type (actually not necessary if we provide the miso ID-->geneID
+ conversion ourselves because of pandas' joins)
 
 Then the following are optional, but will be filled in with running of the
 program.
