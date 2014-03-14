@@ -198,7 +198,7 @@ actions in the following order:
 * matplotlib
 * gspread
 * brewer2mpl
-* seaborn (statsmodels)
+* seaborn (statsmodels, moss, patsy)
 * IPython?
 
 ## Naming scheme
