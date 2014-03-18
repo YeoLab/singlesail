@@ -106,7 +106,7 @@ def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2):
         filename = row['miso_summary_filename']
         df = read_one_miso_summary(filename)
 
-        for column_name in row:
+        for column_name in row.index:
             if column_name == 'miso_summary_filename':
                 continue
             df[column_name] = row[column_name]
