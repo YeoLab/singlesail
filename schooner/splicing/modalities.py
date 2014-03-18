@@ -400,7 +400,7 @@ class ClusteringTester(object):
 
         """
         self.color_cycle = cycle(self.colors)
-        fig, axes_array = plt.subplots(nrows=self.n_clusters,ncols=n,
+        fig, axes_array = plt.subplots(nrows=self.n_clusters, ncols=n,
                                        figsize=(n, 2*self.n_clusters),
                                        sharey=True)
         for axes, label, color in zip(axes_array, self.labels_unique,
