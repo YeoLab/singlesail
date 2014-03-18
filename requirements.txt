@@ -6,4 +6,4 @@ statsmodels
 patsy
 seaborn
 scikit-learn
-git://github.com/scikit-fuzzy/scikit-fuzzy.git
+scikit-fuzzy
