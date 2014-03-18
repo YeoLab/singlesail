@@ -338,8 +338,9 @@ class ClusteringTester(object):
                 continue
 
             # fig = plt.figure(figsize=(16, 4))
-            hist_ax = plt.subplot2grid((1, 5), (i,0), colspan=1, rowspan=1)
-            lavalamp_ax = plt.subplot2grid((1,5), (i, 1), colspan=4, rowspan=4)
+            hist_ax = plt.subplot2grid((self.n_clusters, 5), (i,0), colspan=1,
+                                       rowspan=1)
+            lavalamp_ax = plt.subplot2grid((self.n_clusters,5), (i, 1), colspan=4, rowspan=4)
 
             self._hist(hist_ax, label, color=color)
             self._lavalamp(lavalamp_ax, label, color=color)
