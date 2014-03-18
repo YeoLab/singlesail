@@ -277,7 +277,8 @@ class ClusteringTester(object):
         nrow = (self.labels == label).sum()
         ncol = self.data.psi.shape[1]
         x = np.vstack(np.arange(nrow) for _ in range(ncol))
-        y = self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.T
+        y = self.data.psi.ix[self.data.psi.index.values[self.labels == label],
+            :].values.T
         order = get_switchy_score_order(y)
         y = y[:,order]
         x_prev = x.max() + 1
@@ -338,15 +339,16 @@ class ClusteringTester(object):
                 continue
 
             # fig = plt.figure(figsize=(16, 4))
-            hist_ax = plt.subplot2grid((self.n_clusters, 5), (i,0), colspan=1,
+            hist_ax = plt.subplot2grid((self.n_clusters, 5), (i, 0), colspan=1,
                                        rowspan=1)
-            lavalamp_ax = plt.subplot2grid((self.n_clusters,5), (i, 1), colspan=4, rowspan=4)
+            lavalamp_ax = plt.subplot2grid((self.n_clusters, 5), (i, 1),
+                                           colspan=4, rowspan=4)
 
             self._hist(hist_ax, label, color=color)
             self._lavalamp(lavalamp_ax, label, color=color)
         return fig
 
-    def pca_viz(self):
+    def pca_viz(self, celltype=''):
         """Visualizes the clusters on the PCA of the data
 
         Returns
@@ -371,8 +373,9 @@ class ClusteringTester(object):
                    color=color_list, alpha=0.25, linewidth=0.1, edgecolor='#262626')
         self._annotate_centers(ax)
 
-        ax.set_title('{} clustering on the Motor Neuron dataset (PCA-reduced data)\n'
-                 'Centroids are marked with black cross (step={:.2f})'.format(type(self.clusterer),
+        ax.set_title('{} clustering on the {} dataset (PCA-reduced data)\n'
+                 'Centroids are marked with black cross (step={:.2f})'
+                     .format(celltype, type(self.clusterer),
                                                                               self.data.step))
         ax.set_xlim(x_min, x_max)
         ax.set_ylim(y_min, y_max)
