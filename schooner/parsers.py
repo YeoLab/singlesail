@@ -1,4 +1,6 @@
 import pandas as pd
+import numpy as np
+
 
 def max_csv(x):
     '''Takes the max of integers separated by commas
@@ -71,28 +73,64 @@ def read_one_miso_summary(filename):
                       ci_halves_max], axis=1)
 
 
-def read_multiple_miso_summaries(glob_command, extract_ids_function,
-                                 ci_halves_max_thresh):
+def read_multiple_miso_summaries(sample_info_filename,
+                                 ci_halves_max_thresh=0.2):
     """Read a bunch of miso summary files
 
     Parameters
     ----------
-    glob_command : str
-        String of a "glob"-syntax command that will grab all miso summary
-        files so you don't have to specify each individual one. E.g. if your
-        summary files are located in miso/sample_id/
-
-    extract_ids_function : function
-
+    sample_info_filename : str
+        Location of the Schooner-compatible sample info file. Must have a
+        column called 'miso-summary_filename'
 
     ci_halves_max_thresh : float
+        Threshold of the maximum confidence interval half to accept for an
+        event.
 
     Returns
     -------
-
-
-    Raises
-    ------
+    pandas.DataFrame
+        A "tall" dataframe of all the summary files concatenated together,
+        on top of each other. All events with ci_halves_max less than the
+        threshold have been removed. Also contains all data from the
+        sample_info_file.
 
     """
-    pass
+    dfs = []
+    sample_info_all = pd.read_table(sample_info_filename)
+    for i, row in sample_info_all.iterrows():
+        filename = row['miso_summary_filename']
+        df = read_one_miso_summary(filename)
+
+        for column_name in row:
+            if column_name == 'miso_summary_filename':
+                continue
+            df[column_name] = row[column_name]
+
+        dfs.append(df.reset_index())
+
+    summary = pd.concat(dfs)
+    summary = summary[summary.ci_halves_max <= ci_halves_max_thresh]
+
+    # since we just removed a bunch of rows, reset the index to be simply
+    # integers in order, so there's no weird gaps
+    summary.index = np.arange(summary.shape[0])
+
+    # Add isoformA and isoformB counts for the two isoforms
+    isoform_counts = assigned_counts_to_isoform_counts(summary.assigned_counts)
+    summary = summary.join(isoform_counts)
+    summary.sort_index(axis=1, inplace=True)
+    return summary
+
+def assigned_counts_to_isoform_counts(assigned_counts):
+    """Transform an assigned counts column into a dataframe with counts of both isoforms
+
+    """
+    int_to_isoform = {0: 'isoformA_counts',
+                      1: 'isoformB_counts'}
+    assigned_counts = assigned_counts.to_dict()
+    isoform_counts = dict((k, dict(
+        (int_to_isoform[int(pair.split(':')[0])], int(pair.split(':')[1]))
+        for pair in v.split(','))) for k, v in assigned_counts.iteritems())
+    isoform_counts = pd.DataFrame.from_dict(isoform_counts, orient='index')
+    return isoform_counts
