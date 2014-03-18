@@ -1,4 +1,4 @@
 schooner
 ========
 
-Single-cell hub for object-oriented .... research?
+Single-cell hub for object-oriented .... exploratory research?

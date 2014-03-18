@@ -161,11 +161,22 @@ class Data(object):
 
 
 def switchy_score(array):
-    """
-    Transforms a psi score (between 0 and 1) and provides a reasonable way to
-    sort by psi scores on lava lamp plots.
+    """Transform a 1D array of psi scores to a vector of "switchy scores"
 
-    array is something that can be cast to a 1-D np array
+    Calculates std deviation and mean of sine- and cosine-transformed
+    versions of the array. Better than sorting by just the mean which doesn't
+    push the really lowly variant events to the ends.
+
+    Parameters
+    ----------
+    array : numpy.array
+        A 1-D numpy array or something that could be cast as such (like a list)
+
+    Returns
+    -------
+    float
+        The "switchy score" of the data which can then be compared to other
+        splicing event data
 
     @author Michael T. Lovci
     """
@@ -175,10 +186,32 @@ def switchy_score(array):
     return variance * mean_value
 
 def get_switchy_score_order(x):
+    """Apply switchy scores to a 2D array of psi scores
+
+    Parameters
+    ----------
+    x : numpy.array
+        A 2-D numpy array in the shape [n_events, n_samples]
+
+    Returns
+    -------
+    numpy.array
+        A 1-D array of the ordered indices, in switchy score order
+    """
     switchy_scores = np.apply_along_axis(switchy_score, axis=0, arr=x)
     return np.argsort(switchy_scores)
 
 class ClusteringTester(object):
+    """Class for consistent evaluation of clustering methods
+
+    Attributes
+    ----------
+
+
+    Methods
+    -------
+
+    """
     def __init__(self, data, ClusterMethod, reduced='binned', cluster_kws=None, colors=None):
         self.data = data
         self.reduced = self.data.reduced_psi if reduced is 'psi' else self.data.reduced_binned
@@ -201,9 +234,6 @@ class ClusteringTester(object):
 
     def hist(self, ax, label, color):
         """Plot histograms of the psi scores of one label"""
-#         fig, axes = plt.subplots(ncols=self.n_clusters, figsize=(4*self.n_clusters,4))
-#         for ax, label in zip(axes, self.labels_unique):
-        #     print 'label',label
         ax.hist(self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.flat,
                 bins=np.arange(0, 1.05, 0.05), facecolor=color, linewidth=0.1)
         ax.set_title('Cluster: {}'.format(label))
@@ -257,7 +287,9 @@ class ClusteringTester(object):
         # Reset the color cycle in case we already cycled through it
         self.color_cycle = cycle(self.colors)
 
-        for label, color in zip(self.labels_unique, self.color_cycle):
+        fig = plt.figure(figsize=(16, 4*self.n_clusters))
+        for i, (label, color) in enumerate(zip(self.labels_unique,
+                                          self.color_cycle)):
             if label % 10 == 0:
                 print 'plotting cluster {} of {}'.format(label, self.n_clusters)
             if label == -1:
@@ -266,39 +298,22 @@ class ClusteringTester(object):
             if n_samples_in_cluster <= 5:
                 continue
 
-            fig = plt.figure(figsize=(16, 4))
-            hist_ax = plt.subplot2grid((1, 5), (0,0), colspan=1, rowspan=1)
-            lavalamp_ax = plt.subplot2grid((1,5), (0, 1), colspan=4, rowspan=4)
+            # fig = plt.figure(figsize=(16, 4))
+            hist_ax = plt.subplot2grid((1, 5), (i,0), colspan=1, rowspan=1)
+            lavalamp_ax = plt.subplot2grid((1,5), (i, 1), colspan=4, rowspan=4)
 
             self.hist(hist_ax, label, color=color)
             self.lavalamp(lavalamp_ax, label, color=color)
+        return fig
 
     def pca_viz(self):
-        """Visualizes the clusters on the PCA of the data (from self.data.pca_binned)"""
-        # Step size of the mesh. Decrease to increase the quality of the VQ.
-#         h = .02     # point in the mesh [x_min, m_max]x[y_min, y_max].
+        """Visualizes the clusters on the PCA of the data"""
 
         # Plot the decision boundary. For that, we will assign a color to each
         x_min, x_max = self.reduced[:, 0].min(), self.reduced[:, 0].max()
         y_min, y_max = self.reduced[:, 1].min(), self.reduced[:, 1].max()
-#         xx, yy = np.meshgrid (np.arange (x_min, x_max, h), np.arange (y_min, y_max, h))
 
-#         # Obtain labels for each point in mesh. Use last trained model.
-#         Z = self.clusterer.predict(np.c_[xx.ravel(), yy.ravel()])
-
-#         # Put the result into a color plot
-#         Z = Z.reshape(xx.shape)
-#         print Z
-    #     pl.figure (1)
-    #     pl.clf ()
         fig, ax = plt.subplots(figsize=(12,8))
-#         ax.imshow (Z, interpolation='nearest',
-#                   extent=(xx.min(), xx.max(), yy.min(), yy.max()),
-#                   cmap=mpl.cm.Set1,
-#                   aspect='auto', origin='lower', alpha=0.5)
-
-#         ax.plot(self.data.reduced_binned[:, 0], self.data.reduced_binned[:, 1], 'k.',
-#                 markersize=2)
 
         # Reset the color cycle in case we already cycled through it
         self.color_cycle = cycle(self.colors)
@@ -317,6 +332,7 @@ class ClusteringTester(object):
         ax.set_xticks(())
         ax.set_yticks(())
         sns.despine(left=True, bottom=True)
+        return fig
 
     def violinplot_random_cluster_members(self, n=20):
         self.color_cycle = cycle(self.colors)
