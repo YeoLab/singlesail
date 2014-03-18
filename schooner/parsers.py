@@ -106,13 +106,13 @@ def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2,
 
 
     sys.stdout.write(
-        'Parsing {} MISO summary files...'.format(sample_info.shape[0]))
+        'Parsing {} MISO summary files...\n'.format(sample_info.shape[0]))
     # sample_info_all = pd.read_table(sample_info_filename)
 
     start_time = datetime.now()
     for i, row in sample_info.iterrows():
         if i % reporting_interval == 0:
-            sys.stdout.write('\tparsing {} of {} miso summary files'.format(
+            sys.stdout.write('\tparsing {} of {} miso summary files\n'.format(
                 i, sample_info.shape[0]))
         filename = row['miso_summary_filename']
         df = read_one_miso_summary(filename)
@@ -123,10 +123,10 @@ def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2,
             df[column_name] = row[column_name]
 
         dfs.append(df.reset_index())
-    sys.stdout.write('\tDone. Elapsed time: {}'.format(datetime.now() -
+    sys.stdout.write('\tDone. Elapsed time: {}\n'.format(datetime.now() -
                                                     start_time))
 
-    sys.stdout.write('Concatenating and filtering MISO summary files...')
+    sys.stdout.write('Concatenating and filtering MISO summary files...\n')
     start_time = datetime.now()
     summary = pd.concat(dfs)
     summary = summary[summary.ci_halves_max <= ci_halves_max_thresh]
