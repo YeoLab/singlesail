@@ -117,6 +117,7 @@ def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2,
         filename = row['miso_summary_filename']
         df = read_one_miso_summary(filename)
         df['splice_type'] = row['splice_type']
+        df['sample_id'] = row['sample_id']
 
         # for column_name in row.index:
         #     if column_name == 'miso_summary_filename':
