@@ -10,7 +10,7 @@ from sklearn.base import BaseEstimator, ClusterMixin, TransformerMixin
 from sklearn.cluster import KMeans, spectral_clustering
 from sklearn.decomposition import PCA
 import seaborn as sns
-
+sns.set_axes_style('nogrid', 'talk')
 
 class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
     """Class for Fuzzy C-means clustering in scikit-learn cluster class format
@@ -73,7 +73,6 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
         self.exponent = exponent
         self.min_error = min_error
         self.max_iter = max_iter
-        return self
 
     def fit(self, data, prob_thresh=None):
         """Fit the data to the number of clusters
@@ -83,15 +82,6 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
         data : numpy.array
             A numpy array of values (no NAs!) in the same format as required
             by scikit-learn, that in the shape [n_samples, n_features]
-
-        Returns
-        -------
-
-
-
-        Raises
-        ------
-
         """
         cluster_centers, fuzzy_matrix, initial_guess, distance_matrix, \
             objective_function_history, n_iter, fuzzy_partition_coeff = \
@@ -103,9 +93,12 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
         self.probability_of_labels = fuzzy_matrix
         self.labels_ = np.apply_along_axis(np.argmax, axis=0, arr=self.probability_of_labels)
 
-        # Adjust labels for everything that didn't have a cluster membership prob >= 0.9
-        self.unclassifiable = (self.probability_of_labels >= 0.9).sum(axis=0) == 0
-        self.labels_[self.unclassifiable] = -1
+        # Adjust labels for everything that didn't have a cluster membership
+        # prob >= prob_thresh
+        if prob_thresh is not None:
+            self.unclassifiable = (self.probability_of_labels >= prob_thresh)\
+                                      .sum(axis=0) == 0
+            self.labels_[self.unclassifiable] = -1
 
         self.distance_matrix = distance_matrix
         self.objective_function_history = objective_function_history
