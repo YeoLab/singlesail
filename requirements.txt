@@ -5,5 +5,5 @@ pandas
 statsmodels
 patsy
 seaborn
-sklearn
-skfuzzy
+scikit-learn
+git://github.com/scikit-fuzzy/scikit-fuzzy.git#egg=skfuzzy
