@@ -72,14 +72,18 @@ def read_one_miso_summary(filename):
     return pd.concat([df, genome_location, ci_diff, ci_halves,
                       ci_halves_max], axis=1)
 
+def read_sample_info(sample_info_filename):
+    """Read a sample info file
 
-def read_multiple_miso_summaries(sample_info_filename,
-                                 ci_halves_max_thresh=0.2):
+    """
+    return pd.read_table(sample_info_filename)
+
+def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2):
     """Read a bunch of miso summary files
 
     Parameters
     ----------
-    sample_info_filename : str
+    sample_info : str
         Location of the Schooner-compatible sample info file. Must have a
         column called 'miso-summary_filename'
 
@@ -97,8 +101,8 @@ def read_multiple_miso_summaries(sample_info_filename,
 
     """
     dfs = []
-    sample_info_all = pd.read_table(sample_info_filename)
-    for i, row in sample_info_all.iterrows():
+    # sample_info_all = pd.read_table(sample_info_filename)
+    for i, row in sample_info.iterrows():
         filename = row['miso_summary_filename']
         df = read_one_miso_summary(filename)
 
