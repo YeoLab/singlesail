@@ -408,7 +408,8 @@ class ClusteringTester(object):
             if label == -1:
                 color = 'k'
             these_labels = self.labels == label
-            events = np.random.choice(self.data.psi.index[these_labels], size=n)
+            events = np.random.choice(self.data.psi.index.values[
+                                          these_labels], size=n)
             y = self.data.psi.ix[events,:].values.T
             order = get_switchy_score_order(y)
             events = events[order]
