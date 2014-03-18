@@ -120,9 +120,7 @@ class Data(object):
         self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
         self.step = step
         self.n_components = n_components
-        self.binify()
-        self.reduce()
-        return self
+        self.binify().reduce()
 
     def binify(self):
         self.bins = np.arange(0, 1+self.step, self.step)
@@ -201,6 +199,7 @@ def get_switchy_score_order(x):
     switchy_scores = np.apply_along_axis(switchy_score, axis=0, arr=x)
     return np.argsort(switchy_scores)
 
+
 class ClusteringTester(object):
     """Class for consistent evaluation of clustering methods
 
@@ -210,11 +209,29 @@ class ClusteringTester(object):
 
     Methods
     -------
-
+    hist_lavalamp
+        Plot a histogram and lavalamp of psi scores from each cluster
+    pca_viz
+        Vizualize the clusters on the PCA of the data
     """
-    def __init__(self, data, ClusterMethod, reduced='binned', cluster_kws=None, colors=None):
+    def __init__(self, data, ClusterMethod, reduced='binned', cluster_kws=None,
+                 colors=None):
+        """Initialize ClusterTester and cluster the data
+
+        Parameters
+        ----------
+        data : Data
+            An object of the Data class
+        ClusterMethod : sklearn.cluster class
+            An object of the format from sklearn.cluster. Must have the fit()
+            method, and create the attributes labels_
+        reduced : str
+            Specified which PCA-reduced data to use. Either the
+            histogram-binned data ("binned") or the raw psi scores ("psi")
+        """
         self.data = data
-        self.reduced = self.data.reduced_psi if reduced is 'psi' else self.data.reduced_binned
+        self.reduced = self._get_reduced(reduced)
+
         cluster_kws = cluster_kws if cluster_kws is not None else {}
         self.clusterer = ClusterMethod(**cluster_kws)
         if ClusterMethod != spectral_clustering:
@@ -232,26 +249,43 @@ class ClusteringTester(object):
             self.colors = colors
         self.color_cycle = cycle(self.colors)
 
-    def hist(self, ax, label, color):
+    def _get_reduced(self, reduced):
+        """Sanely extracts the PCA-reduced data from the Data object
+
+        Parameters
+        ----------
+        reduced : str
+            Either "binned" or "psi"
+
+        Returns
+        -------
+        reduced_data : numpy.array
+            The PCA-reduced data from the specified array
+        """
+        if reduced.lower() == 'psi':
+            reduced_data = self.data.reduced_psi
+        elif reduced.lower() == 'binned':
+            reduced_data = self.data.reduced_binned
+        else:
+            raise ValueError('Reduced data must be specified as one of "psi" '
+                             'or "binned", not {}'.format(reduced))
+        return reduced_data
+
+    def _hist(self, ax, label, color):
         """Plot histograms of the psi scores of one label"""
-        ax.hist(self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.flat,
+        ax._hist(self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.flat,
                 bins=np.arange(0, 1.05, 0.05), facecolor=color, linewidth=0.1)
         ax.set_title('Cluster: {}'.format(label))
         ax.set_xlim(0,1)
         sns.despine()
 
-    def lavalamp(self, ax, label, color):
-        """makes a lavalamp of one label"""
+    def _lavalamp(self, ax, label, color):
+        """makes a _lavalamp of psi scores of one label"""
         nrow = (self.labels == label).sum()
         ncol = self.data.psi.shape[1]
-#         print 'nrow, ncol', nrow, ncol
         x = np.vstack(np.arange(nrow) for _ in range(ncol))
-#             x = x+ x_prev
         y = self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.T
-#         switchy_scores = np.apply_along_axis(switchy_score, axis=0, arr=y)
-#         order = np.argsort(switchy_scores)
         order = get_switchy_score_order(y)
-#             x = x[:,order]
         y = y[:,order]
         x_prev = x.max() + 1
         ax.scatter(x, y, color=color, alpha=0.5, edgecolor='#262626', linewidth=0.1)
@@ -261,13 +295,17 @@ class ClusteringTester(object):
         ax.set_title('n = {}'.format(nrow))
 
     def _annotate_centers(self, ax):
-        if type(self.clusterer) == KMeans or type(self.clusterer == FuzzyCMeans):
+        """If the clusterer has cluster_centers_, plot the centroids
+
+        Parameters
+        ----------
+        ax : matplotlib.pyplot.Axes
+            Axes object to plot the annotation on
+        """
+        if type(self.clusterer) == KMeans or \
+                type(self.clusterer == FuzzyCMeans):
             # Plot the centroids as a white X
             centroids = self.clusterer.cluster_centers_
-#         elif type(self.clusterer) == AffinityPropagation:
-#             centroids = self.data.binned[self.clusterer.cluster_centers_indices_,:]
-#         elif type(self.clusterer) == DBSCAN:
-#             return
         else:
             return
 #             centroids = self.data.binned[self.clusterer.core_sample_indices_,:]
@@ -284,6 +322,14 @@ class ClusteringTester(object):
                 pass
 
     def hist_lavalamp(self):
+        """Plot a histogram and _lavalamp for all the clusters
+
+        Returns
+        -------
+        fig : matplotlib.pyplot.figure
+            A figure instance with all the histograms and _lavalamp plots of
+            all labels, for saving.
+        """
         # Reset the color cycle in case we already cycled through it
         self.color_cycle = cycle(self.colors)
 
@@ -302,12 +348,19 @@ class ClusteringTester(object):
             hist_ax = plt.subplot2grid((1, 5), (i,0), colspan=1, rowspan=1)
             lavalamp_ax = plt.subplot2grid((1,5), (i, 1), colspan=4, rowspan=4)
 
-            self.hist(hist_ax, label, color=color)
-            self.lavalamp(lavalamp_ax, label, color=color)
+            self._hist(hist_ax, label, color=color)
+            self._lavalamp(lavalamp_ax, label, color=color)
         return fig
 
     def pca_viz(self):
-        """Visualizes the clusters on the PCA of the data"""
+        """Visualizes the clusters on the PCA of the data
+
+        Returns
+        -------
+        fig : matplotlib.pyplot.figure
+            A figure instance with the PCA, for saving.
+
+        """
 
         # Plot the decision boundary. For that, we will assign a color to each
         x_min, x_max = self.reduced[:, 0].min(), self.reduced[:, 0].max()
@@ -335,8 +388,29 @@ class ClusteringTester(object):
         return fig
 
     def violinplot_random_cluster_members(self, n=20):
+        """Make violin plot of n random cluster members.
+
+        Useful for seeing whether a cluster has bimodal events or not,
+        which is not obvious from the lava lamp plot
+
+        Parameters
+        ----------
+        n : int
+            Number of cluster members to plot.
+
+        Returns
+        -------
+        fig : matplotlib.pyplot.figure
+            A figure instance with all the violin plots of all labels,
+            for saving.
+
+        """
         self.color_cycle = cycle(self.colors)
-        for label, color in zip(self.labels_unique, self.color_cycle):
+        fig, axes_array = plt.subplots(ncols=n,
+                                       figsize=(n, 2*self.n_clusters),
+                                       sharey=True)
+        for axes, label, color in zip(axes_array, self.labels_unique,
+                                self.color_cycle):
             if label == -1:
                 color = 'k'
             these_labels = self.labels == label
@@ -344,7 +418,6 @@ class ClusteringTester(object):
             y = self.data.psi.ix[events,:].values.T
             order = get_switchy_score_order(y)
             events = events[order]
-            fig, axes = plt.subplots(ncols=n, figsize=(n, 2), sharey=True)
             for event, ax in zip(events, axes):
         #         if i % 20 == 0:
                 sns.violinplot(self.data.psi.ix[event], bw=0.1, inner='points',
@@ -353,3 +426,4 @@ class ClusteringTester(object):
                 ax.set_xticks([])
                 ax.set_xlabel(label)
                 sns.despine()
+        return fig
