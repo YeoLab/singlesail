@@ -266,7 +266,7 @@ class ClusteringTester(object):
 
     def _hist(self, ax, label, color):
         """Plot histograms of the psi scores of one label"""
-        ax._hist(self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.flat,
+        ax.hist(self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.flat,
                 bins=np.arange(0, 1.05, 0.05), facecolor=color, linewidth=0.1)
         ax.set_title('Cluster: {}'.format(label))
         ax.set_xlim(0,1)
