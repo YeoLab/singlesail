@@ -116,11 +116,12 @@ def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2,
                 i, sample_info.shape[0]))
         filename = row['miso_summary_filename']
         df = read_one_miso_summary(filename)
+        df['splice_type'] = row['splice_type']
 
-        for column_name in row.index:
-            if column_name == 'miso_summary_filename':
-                continue
-            df[column_name] = row[column_name]
+        # for column_name in row.index:
+        #     if column_name == 'miso_summary_filename':
+        #         continue
+        #     df[column_name] = row[column_name]
 
         dfs.append(df.reset_index())
     sys.stdout.write('\tDone. Elapsed time: {}\n'.format(datetime.now() -
