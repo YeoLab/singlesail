@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-
+import sys
+from datetime import datetime
 
 def max_csv(x):
     '''Takes the max of integers separated by commas
@@ -78,7 +79,8 @@ def read_sample_info(sample_info_filename):
     """
     return pd.read_table(sample_info_filename)
 
-def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2):
+def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2,
+                       reporting_interval=100):
     """Read a bunch of miso summary files
 
     Parameters
@@ -101,8 +103,17 @@ def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2):
 
     """
     dfs = []
+
+
+    sys.stdout.write(
+        'Parsing {} MISO summary files...'.format(sample_info.shape[0]))
     # sample_info_all = pd.read_table(sample_info_filename)
+
+    start_time = datetime.now()
     for i, row in sample_info.iterrows():
+        if i % reporting_interval == 0:
+            sys.stdout.write('\tparsing {} of {} miso summary files'.format(
+                i, sample_info.shape[0]))
         filename = row['miso_summary_filename']
         df = read_one_miso_summary(filename)
 
@@ -112,7 +123,11 @@ def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2):
             df[column_name] = row[column_name]
 
         dfs.append(df.reset_index())
+    sys.stdout.write('\tDone. Elapsed time: {}'.format(datetime.now() -
+                                                    start_time))
 
+    sys.stdout.write('Concatenating and filtering MISO summary files...')
+    start_time = datetime.now()
     summary = pd.concat(dfs)
     summary = summary[summary.ci_halves_max <= ci_halves_max_thresh]
 
@@ -124,6 +139,8 @@ def get_miso_summaries(sample_info, ci_halves_max_thresh=0.2):
     isoform_counts = assigned_counts_to_isoform_counts(summary.assigned_counts)
     summary = summary.join(isoform_counts)
     summary.sort_index(axis=1, inplace=True)
+    sys.stdout.write('\tDone. Elapsed time: {}'.format(datetime.now() -
+                                                       start_time))
     return summary
 
 def assigned_counts_to_isoform_counts(assigned_counts):
