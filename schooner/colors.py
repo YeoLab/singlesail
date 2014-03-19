@@ -1,7 +1,7 @@
 import brewer2mpl
 
 # "primary" type colors with red, blue, etc
-set1 = brewer2mpl.get_map('Set1', 'Qualitative', 9)
+set1 = brewer2mpl.get_map('Set1', 'Qualitative', 9).mpl_colors
 
 # Map color names to colors in set1:
 mpl_to_set1 = {'red': set1[0],
@@ -18,9 +18,9 @@ mpl_to_set1 = {'red': set1[0],
 # More colorblind friendly colors but harder to describe like "teal", "peach",
 # "gray-blue." Lighter than the dark2 colors. Good for larger item plotting
 # like barplots
-set2 = brewer2mpl.get_map('Set2', 'Qualitative', 8)
+set2 = brewer2mpl.get_map('Set2', 'Qualitative', 8).mpl_colors
 
 # Darker versions of the same colors in set2. Good for small-sized plotting
 # items like scatterplots
-dark2 = brewer2mpl.get_map('Dark2', 'Qualitative', 8)
+dark2 = brewer2mpl.get_map('Dark2', 'Qualitative', 8).mpl_colors
 
