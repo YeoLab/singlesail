@@ -303,6 +303,7 @@ class ClusteringTester(object):
 
             self._hist(hist_ax, label, color=color)
             self._lavalamp(lavalamp_ax, label, color=color)
+        fig.tight_layout()
         return fig
 
     def _plot_pca_vectors(self, ax):
@@ -435,4 +436,5 @@ class ClusteringTester(object):
                 ax.set_xticks([])
                 ax.set_xlabel(label)
                 sns.despine()
+        fig.tight_layout()
         return fig
