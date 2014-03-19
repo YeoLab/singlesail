@@ -114,7 +114,7 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
 class Data(object):
     def __init__(self, psi, n_components, step=0.1):
         self.psi = psi
-        self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
+        # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
         self.step = step
         self.n_components = n_components
         self.binify().reduce()
@@ -129,10 +129,10 @@ class Data(object):
         return self
 
     def reduce(self):
-        self.pca_psi = PCA(n_components=self.n_components).fit(self.psi_fillna_mean)
-        self.reduced_psi = self.pca_psi.transform(self.psi_fillna_mean)
-        self.plot_explained_variance(self.pca_psi,
-                                     'PCA on psi (fillna with mean of event)')
+        # self.pca_psi = PCA(n_components=self.n_components).fit(self.psi_fillna_mean)
+        # self.reduced_psi = self.pca_psi.transform(self.psi_fillna_mean)
+        # self.plot_explained_variance(self.pca_psi,
+        #                              'PCA on psi (fillna with mean of event)')
 
         self.pca_binned = PCA(n_components=self.n_components).fit(self.binned)
         self.reduced_binned = self.pca_binned.transform(self.binned)
@@ -244,13 +244,17 @@ class ClusteringTester(object):
         reduced_data : numpy.array
             The PCA-reduced data from the specified array
         """
-        if reduced.lower() == 'psi':
-            reduced_data = self.data.reduced_psi
-        elif reduced.lower() == 'binned':
+        # if reduced.lower() == 'psi':
+        #     reduced_data = self.data.reduced_psi
+        if reduced.lower() == 'binned':
+        # elif reduced.lower() == 'binned':
             reduced_data = self.data.reduced_binned
         else:
-            raise ValueError('Reduced data must be specified as one of "psi" '
-                             'or "binned", not {}'.format(reduced))
+            raise ValueError('only "psi" can be specified as a reduced '
+                             'dataset. the option for this is historic and I '
+                             'am keeping it around just in case.')
+            # raise ValueError('Reduced data must be specified as one of "psi" '
+            #                  'or "binned", not {}'.format(reduced))
         return reduced_data
 
     def _hist(self, ax, label, color):
