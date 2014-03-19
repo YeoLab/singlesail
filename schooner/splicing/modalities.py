@@ -112,8 +112,10 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
 
 
 class Data(object):
-    def __init__(self, psi, n_components, step=0.1):
+    def __init__(self, psi, n_components, step=0.1,
+                 reducer=PCA):
         self.psi = psi
+        self.reducer = reducer
         # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
         self.step = step
         self.n_components = n_components
@@ -134,9 +136,11 @@ class Data(object):
         # self.plot_explained_variance(self.pca_psi,
         #                              'PCA on psi (fillna with mean of event)')
 
-        self.pca_binned = PCA(n_components=self.n_components).fit(self.binned)
-        self.reduced_binned = self.pca_binned.transform(self.binned)
-        self.plot_explained_variance(self.pca_binned, 'PCA on binned data')
+        self.reducer_fit_to_binned = self.reducer(n_components=self.n_components).fit(self
+                                                                    .binned)
+        self.reduced_binned = self.reducer_fit_to_binned.transform(self.binned)
+        self.plot_explained_variance(self.reducer_fit_to_binned,
+                                     '{} on binned data'.format(self.reducer))
         return self
 
     def plot_explained_variance(self, pca, title):
