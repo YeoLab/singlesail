@@ -6,7 +6,7 @@ from schooner.colors import dark2
 sns.set_axes_style('nogrid', 'talk')
 
 def lavalamp(psi, color=None, title='', ax=None):
-    """Make a 'lavalamp' scatter plot of many splicing events
+    """Make a 'lavalamp' scatter plot of many spliciang events
 
     Useful for visualizing many splicing events at once.
 
@@ -56,6 +56,7 @@ def lavalamp(psi, color=None, title='', ax=None):
     sns.despine()
     ax.set_ylabel('$\Psi$')
     ax.set_xlabel('{} splicing events'.format(nrow))
+    ax.set_xticks([])
 
     ax.set_xlim(0, xmax)
     ax.set_ylim(0, 1)
