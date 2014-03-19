@@ -296,11 +296,10 @@ class ClusteringTester(object):
         ax : matplotlib.pyplot.Axes
             Axes object to plot the annotation on
         """
-        if type(self.clusterer) == KMeans or \
-                type(self.clusterer == FuzzyCMeans):
+        try:
             # Plot the centroids as a white X
             centroids = self.clusterer.cluster_centers_
-        else:
+        except AttributeError:
             return
 #             centroids = self.data.binned[self.clusterer.core_sample_indices_,:]
 
