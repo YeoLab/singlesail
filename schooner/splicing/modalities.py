@@ -10,6 +10,10 @@ from sklearn.base import BaseEstimator, ClusterMixin, TransformerMixin
 from sklearn.cluster import KMeans, spectral_clustering
 from sklearn.decomposition import PCA
 import seaborn as sns
+
+from schooner.splicing.utils import get_switchy_score_order
+from schooner.splicing.viz import lavalamp
+
 sns.set_axes_style('nogrid', 'talk')
 
 class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
@@ -127,7 +131,8 @@ class Data(object):
     def reduce(self):
         self.pca_psi = PCA(n_components=self.n_components).fit(self.psi_fillna_mean)
         self.reduced_psi = self.pca_psi.transform(self.psi_fillna_mean)
-        self.plot_explained_variance(self.pca_psi, 'PCA on psi (fillna with mean of event)')
+        self.plot_explained_variance(self.pca_psi,
+                                     'PCA on psi (fillna with mean of event)')
 
         self.pca_binned = PCA(n_components=self.n_components).fit(self.binned)
         self.reduced_binned = self.pca_binned.transform(self.binned)
@@ -149,48 +154,6 @@ class Data(object):
         self.pdist = squareform(pdist(self.binned, metric=metric))
         return self
 
-
-
-def switchy_score(array):
-    """Transform a 1D array of psi scores to a vector of "switchy scores"
-
-    Calculates std deviation and mean of sine- and cosine-transformed
-    versions of the array. Better than sorting by just the mean which doesn't
-    push the really lowly variant events to the ends.
-
-    Parameters
-    ----------
-    array : numpy.array
-        A 1-D numpy array or something that could be cast as such (like a list)
-
-    Returns
-    -------
-    float
-        The "switchy score" of the data which can then be compared to other
-        splicing event data
-
-    @author Michael T. Lovci
-    """
-    array = np.array(array)
-    variance = 1 - np.std(np.sin(array[~np.isnan(array)] * np.pi))
-    mean_value = -np.mean(np.cos(array[~np.isnan(array)] * np.pi))
-    return variance * mean_value
-
-def get_switchy_score_order(x):
-    """Apply switchy scores to a 2D array of psi scores
-
-    Parameters
-    ----------
-    x : numpy.array
-        A 2-D numpy array in the shape [n_events, n_samples]
-
-    Returns
-    -------
-    numpy.array
-        A 1-D array of the ordered indices, in switchy score order
-    """
-    switchy_scores = np.apply_along_axis(switchy_score, axis=0, arr=x)
-    return np.argsort(switchy_scores)
 
 
 class ClusteringTester(object):
@@ -274,19 +237,10 @@ class ClusteringTester(object):
 
     def _lavalamp(self, ax, label, color):
         """makes a _lavalamp of psi scores of one label"""
-        nrow = (self.labels == label).sum()
-        ncol = self.data.psi.shape[1]
-        x = np.vstack(np.arange(nrow) for _ in range(ncol))
+        n_events = (self.labels == label).sum()
         y = self.data.psi.ix[self.data.psi.index.values[self.labels == label],
             :].values.T
-        order = get_switchy_score_order(y)
-        y = y[:,order]
-        x_prev = x.max() + 1
-        ax.scatter(x, y, color=color, alpha=0.5, edgecolor='#262626', linewidth=0.1)
-        sns.despine()
-        ax.set_xlim(0, x_prev)
-        ax.set_ylim(0, 1)
-        ax.set_title('n = {}'.format(nrow))
+        lavalamp(y, color=color, ax=ax, title='n = {}'.format(n_events))
 
     def _annotate_centers(self, ax):
         """If the clusterer has cluster_centers_, plot the centroids
@@ -366,16 +320,22 @@ class ClusteringTester(object):
         # Reset the color cycle in case we already cycled through it
         self.color_cycle = cycle(self.colors)
 
-        colors = [color for _, color in zip(range(self.n_clusters), self.color_cycle)]
-        color_list = [colors[int(label)] if label>=0 else 'k' for label in self.labels]
+        colors = [color for _, color in
+                  zip(range(self.n_clusters), self.color_cycle)]
+
+        # Any label that is -1 (relevant for FuzzyCMeans with a probability
+        # cutoff, and DBSCAN clustering which only makes "confident"
+        # clusters, and everything else is -1), color these labels as black
+        # ("k" in matplotlib colors)
+        color_list = [colors[int(label)] if label>=0 else 'k'
+                      for label in self.labels]
         ax.scatter(self.reduced[:, 0], self.reduced[:, 1],
                    color=color_list, alpha=0.25, linewidth=0.1, edgecolor='#262626')
         self._annotate_centers(ax)
 
         ax.set_title('{} clustering on the {} dataset (PCA-reduced data)\n'
                  'Centroids are marked with black cross (step={:.2f})'
-                     .format(celltype, type(self.clusterer),
-                                                                              self.data.step))
+                     .format(celltype, type(self.clusterer), self.data.step))
         ax.set_xlim(x_min, x_max)
         ax.set_ylim(y_min, y_max)
         ax.set_xticks(())
@@ -392,7 +352,7 @@ class ClusteringTester(object):
         Parameters
         ----------
         n : int
-            Number of cluster members to plot.
+            Number of cluster members to plot. Default 20.
 
         Returns
         -------
@@ -419,7 +379,7 @@ class ClusteringTester(object):
         #         if i % 20 == 0:
                 sns.violinplot(self.data.psi.ix[event], bw=0.1, inner='points',
                                color=color, linewidth=0, ax=ax, alpha=0.75)
-                ax.set_ylim(0,1)
+                ax.set_ylim(0, 1)
                 ax.set_xticks([])
                 ax.set_xlabel(label)
                 sns.despine()
