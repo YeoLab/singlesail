@@ -205,6 +205,32 @@ class ClusteringTester(object):
             self.colors = colors
         self.color_cycle = cycle(self.colors)
 
+    def _annotate_centers(self, ax):
+        """If the clusterer has cluster_centers_, plot the centroids
+
+        Parameters
+        ----------
+        ax : matplotlib.pyplot.Axes
+            Axes object to plot the annotation on
+        """
+        try:
+            # Plot the centroids as a white X
+            centroids = self.clusterer.cluster_centers_
+        except AttributeError:
+            return
+
+        ax.scatter(centroids[:, 0], centroids[:, 1],
+                   marker='x', s=169, linewidths=3,
+                   color='k', zorder=10)
+        for i in range(self.n_clusters):
+            try:
+                ax.annotate(str(i),
+                            (centroids[i, 0], centroids[i, 1]),
+                            fontsize=24, xytext=(-20, 0),
+                            textcoords='offset points')
+            except:
+                pass
+
     def _get_reduced(self, reduced):
         """Sanely extracts the PCA-reduced data from the Data object
 
@@ -239,34 +265,8 @@ class ClusteringTester(object):
         """makes a lavalamp of psi scores of one label"""
         ind = self.labels == label
         n_events = (ind).sum()
-        y = self.data.psi.ix[self.data.psi.index.values[ind],:]
+        y = self.data.psi.ix[self.data.psi.index.values[ind], :]
         lavalamp(y, color=color, ax=ax, title='n = {}'.format(n_events))
-
-    def _annotate_centers(self, ax):
-        """If the clusterer has cluster_centers_, plot the centroids
-
-        Parameters
-        ----------
-        ax : matplotlib.pyplot.Axes
-            Axes object to plot the annotation on
-        """
-        try:
-            # Plot the centroids as a white X
-            centroids = self.clusterer.cluster_centers_
-        except AttributeError:
-            return
-
-        ax.scatter(centroids[:, 0], centroids[:, 1],
-                       marker='x', s=169, linewidths=3,
-                       color='k', zorder=10)
-        for i in range(self.n_clusters):
-            try:
-                ax.annotate(str(i),
-                            (centroids[i,0], centroids[i,1]),
-                            fontsize=24, xytext=(-20,0),
-                            textcoords='offset points')
-            except:
-                pass
 
     def hist_lavalamp(self):
         """Plot a histogram and _lavalamp for all the clusters
@@ -295,11 +295,54 @@ class ClusteringTester(object):
             hist_ax = plt.subplot2grid((self.n_clusters, 5), (i, 0), colspan=1,
                                        rowspan=1)
             lavalamp_ax = plt.subplot2grid((self.n_clusters, 5), (i, 1),
-                                           colspan=4, rowspan=4)
+                                           colspan=4, rowspan=1)
 
             self._hist(hist_ax, label, color=color)
             self._lavalamp(lavalamp_ax, label, color=color)
         return fig
+
+    def _plot_pca_vectors(self, ax):
+        """Plot the component vectors of the principal components
+        """
+
+        # # sort features by magnitude/contribution to transformation
+        # c_scale = .75 * max([norm(point) for point in zip(x_list, y_list)]) / \
+        #           max([norm(vector) for vector in zip(x_loading, y_loading)])
+        # x_loading, y_loading = self.components_.ix[x_pc], self.components_.ix[
+        #     y_pc]
+        # comp_magn = []
+        # magnitudes = []
+        # for (x, y, an_id) in zip(x_loading, y_loading, self.X.columns):
+        #
+        #     x = x * c_scale
+        #     y = y * c_scale
+        #
+        #     if distance_metric == 'L1':
+        #         mg = L1_distance(x, y)
+        #
+        #     elif distance_metric == 'L2':
+        #         mg = L2_distance(x, y)
+        #
+        #     comp_magn.append((x, y, an_id, mg))
+        #     magnitudes.append(mg)
+        #
+        # vectors = sorted(comp_magn, key=lambda item: item[3], reverse=True)[
+        #           :num_vectors]
+        #
+        # for x, y, marker, distance in vectors:
+        #
+        #     try:
+        #         color = vector_colors_dict[marker]
+        #     except:
+        #         color = 'black'
+        #
+        #     if show_vectors:
+        #         ppl.plot(ax, [0, x], [0, y], color=color,
+        #                  linewidth=vector_width)
+        #
+        #         if show_vector_labels:
+        #             ax.text(1.1 * x, 1.1 * y, marker, color=color,
+        #                     size=vector_label_size)
 
     def pca_viz(self, celltype=''):
         """Visualizes the clusters on the PCA of the data
@@ -335,6 +378,8 @@ class ClusteringTester(object):
         ax.scatter(self.reduced[:, 0], self.reduced[:, 1],
                    color=color_list, alpha=0.25, linewidth=0.1, edgecolor='#262626')
         self._annotate_centers(ax)
+
+        self._plot_pca_vectors(ax)
 
         ax.set_title('{} clustering on the {} dataset (PCA-reduced data)\n'
                  'Centroids are marked with black cross (step={:.2f})'
