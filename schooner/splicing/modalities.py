@@ -255,7 +255,6 @@ class ClusteringTester(object):
             centroids = self.clusterer.cluster_centers_
         except AttributeError:
             return
-#             centroids = self.data.binned[self.clusterer.core_sample_indices_,:]
 
         ax.scatter(centroids[:, 0], centroids[:, 1],
                        marker='x', s=169, linewidths=3,
@@ -264,7 +263,8 @@ class ClusteringTester(object):
             try:
                 ax.annotate(str(i),
                             (centroids[i,0], centroids[i,1]),
-                            fontsize=24, xytext=(-20,0), textcoords='offset points')
+                            fontsize=24, xytext=(-20,0),
+                            textcoords='offset points')
             except:
                 pass
 
@@ -320,6 +320,9 @@ class ClusteringTester(object):
         # Reset the color cycle in case we already cycled through it
         self.color_cycle = cycle(self.colors)
 
+        # Get the list of colors to choose from so we can index it with the
+        # cluster label. Otherwise we'd get an error because you can't index
+        # an itertools.cycle object, which is what self.color_cycle is
         colors = [color for _, color in
                   zip(range(self.n_clusters), self.color_cycle)]
 
