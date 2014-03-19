@@ -236,10 +236,10 @@ class ClusteringTester(object):
         sns.despine()
 
     def _lavalamp(self, ax, label, color):
-        """makes a _lavalamp of psi scores of one label"""
-        n_events = (self.labels == label).sum()
-        y = self.data.psi.ix[self.data.psi.index.values[self.labels == label],
-            :].values.T
+        """makes a lavalamp of psi scores of one label"""
+        ind = self.labels == label
+        n_events = (ind).sum()
+        y = self.data.psi.ix[self.data.psi.index.values[ind],:]
         lavalamp(y, color=color, ax=ax, title='n = {}'.format(n_events))
 
     def _annotate_centers(self, ax):
