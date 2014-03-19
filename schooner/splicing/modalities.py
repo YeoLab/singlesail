@@ -114,6 +114,28 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
 class Data(object):
     def __init__(self, psi, n_components, step=0.1,
                  reducer=PCA):
+        """Instantiate a object for psi scores with binned and reduced data
+
+        Parameters
+        ----------
+        psi : pandas.DataFrame
+            A [n_events, n_samples] dataframe of splicing events
+        n_components : int
+            Number of components to use in the reducer
+        step : float
+            Value between 0 and 1, the bin size for binning the psi scores
+        reducer : sklearn.decomposition object
+            An scikit-learn class that reduces the dimensionality of data
+            somehow. Must accept the parameter n_components, have the
+            functions fit, transform,
+
+        Returns
+        -------
+
+
+        Raises
+        ------
+        """
         self.psi = psi
         self.reducer = reducer
         # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
@@ -390,9 +412,10 @@ class ClusteringTester(object):
 
         self._plot_pca_vectors(ax)
 
-        ax.set_title('{} clustering on the {} dataset (PCA-reduced data)\n'
+        ax.set_title('{} clustering on the {} dataset ({}-reduced data)\n'
                  'Centroids are marked with black cross (step={:.2f})'
-                     .format(celltype, type(self.clusterer), self.data.step))
+                     .format(celltype, type(self.clusterer),
+                             type(self.data.reducer), self.data.step))
         ax.set_xlim(x_min, x_max)
         ax.set_ylim(y_min, y_max)
         ax.set_xticks(())
