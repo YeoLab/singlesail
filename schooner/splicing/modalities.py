@@ -127,14 +127,8 @@ class Data(object):
         reducer : sklearn.decomposition object
             An scikit-learn class that reduces the dimensionality of data
             somehow. Must accept the parameter n_components, have the
-            functions fit, transform,
+            functions fit, transform, and have the attribute components_
 
-        Returns
-        -------
-
-
-        Raises
-        ------
         """
         self.psi = psi
         self.reducer = reducer
@@ -144,6 +138,7 @@ class Data(object):
         self.binify().reduce()
 
     def binify(self):
+        """Bins psi scores from 0 to 1 on the provided step size"""
         self.bins = np.arange(0, 1+self.step, self.step)
         ncol = int(1/self.step)
         nrow = self.psi.shape[0]
@@ -153,6 +148,8 @@ class Data(object):
         return self
 
     def reduce(self):
+        """Reduces dimensionality of the binned psi score data
+        """
         # self.pca_psi = PCA(n_components=self.n_components).fit(self.psi_fillna_mean)
         # self.reduced_psi = self.pca_psi.transform(self.psi_fillna_mean)
         # self.plot_explained_variance(self.pca_psi,
@@ -161,8 +158,9 @@ class Data(object):
         self.reducer_fit_to_binned = self.reducer(n_components=self.n_components).fit(self
                                                                     .binned)
         self.reduced_binned = self.reducer_fit_to_binned.transform(self.binned)
-        self.plot_explained_variance(self.reducer_fit_to_binned,
-                                     '{} on binned data'.format(self.reducer))
+        if hasattr(self.reducer_fit_to_binned, 'explained_variance_ratio_'):
+            self.plot_explained_variance(self.reducer_fit_to_binned,
+                                         '{} on binned data'.format(self.reducer))
         return self
 
     def plot_explained_variance(self, pca, title):
@@ -177,6 +175,15 @@ class Data(object):
         sns.despine()
 
     def calculate_distances(self, metric='euclidean'):
+        """Creates a squareform distance matrix for clustering fun
+
+        Needed for some clustering algorithms
+
+        Parameters
+        ----------
+        metric : str
+            One of any valid scipy.distance metric strings
+        """
         self.pdist = squareform(pdist(self.binned, metric=metric))
         return self
 
