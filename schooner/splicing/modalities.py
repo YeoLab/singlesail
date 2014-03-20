@@ -463,14 +463,16 @@ class ClusteringTester(object):
         fig, axes_array = plt.subplots(nrows=self.n_clusters, ncols=n,
                                        figsize=(n, 2*self.n_clusters),
                                        sharey=True)
-        for axes, label, color in zip(axes_array, self.labels_unique,
-                                self.color_cycle):
+        index_to_label = dict(zip(self.data.psi.index, self.labels))
+        groupby = self.data.psi.groupby(index_to_label)
+        for axes, color, (label, df) in zip(axes_array, self.color_cycle,
+                                      groupby):
             if label == -1:
                 color = 'k'
             these_labels = self.labels == label
-            events = np.random.choice(self.data.psi.index.values[
-                                          these_labels], size=n)
-            y = self.data.psi.ix[events,:].values.T
+            # events = np.random.choice(self.data.psi.index.values[
+            #                               these_labels], size=n)
+            y = df.values.T
             order = get_switchy_score_order(y)
             events = events[order]
             for event, ax in zip(events, axes):
