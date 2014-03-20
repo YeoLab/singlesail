@@ -322,6 +322,10 @@ class ClusteringTester(object):
             A figure instance with all the histograms and _lavalamp plots of
             all labels, for saving.
         """
+        if self.n_clusters > 500:
+            raise ValueError('Too many clusters for '
+                             'violinplots (n = {})'.format(self.n_clusters))
+
         # Reset the color cycle in case we already cycled through it
         self.color_cycle = cycle(self.colors)
 
@@ -469,6 +473,9 @@ class ClusteringTester(object):
             for saving.
 
         """
+        if self.n_clusters > 500:
+            raise ValueError('Too many clusters for '
+                             'violinplots (n = {})'.format(self.n_clusters))
         self.color_cycle = cycle(self.colors)
         fig, axes_array = plt.subplots(nrows=self.n_clusters, ncols=n,
                                        figsize=(n, 2*self.n_clusters),
