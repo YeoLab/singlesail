@@ -157,3 +157,21 @@ def assigned_counts_to_isoform_counts(assigned_counts):
         for pair in v.split(','))) for k, v in assigned_counts.iteritems())
     isoform_counts = pd.DataFrame.from_dict(isoform_counts, orient='index')
     return isoform_counts
+
+def read_expression_matrix(expression_matrix_file):
+    """Read an expression matrix file
+
+    Parameters
+    ----------
+    expression_matrix_file : str
+        Filename of the expression matrix
+
+    Returns
+    -------
+
+
+    Raises
+    ------
+
+    """
+    raise NotImplementedError

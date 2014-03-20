@@ -160,9 +160,11 @@ class Data(object):
                                                                     .binned)
         self.reduced_binned = self.reducer_fit_to_binned.transform(self.binned)
         if hasattr(self.reducer_fit_to_binned, 'explained_variance_ratio_'):
+
             self.plot_explained_variance(self.reducer_fit_to_binned,
                                          '{} on binned data'.format(self.reducer))
         return self
+
 
     def plot_explained_variance(self, pca, title):
         # Plot the explained variance ratio
@@ -343,47 +345,48 @@ class ClusteringTester(object):
     def _plot_pca_vectors(self, ax):
         """Plot the component vectors of the principal components
         """
-        # sort features by magnitude/contribution to transformation
-        x_loading, y_loading = self.components_[:, 0], \
-                               self.components_.ix[:, 1]
-        c_scale = .75 * max([norm(point)
-                             for point in self.reduced[:,(0,1)]]) / \
-                  max([norm(vector) for vector in zip(x_loading, y_loading)])
-
-        comp_magn = []
-        magnitudes = []
-        for (x, y, an_id) in zip(x_loading, y_loading, self.X.columns):
-
-            x = x * c_scale
-            y = y * c_scale
-
-            if distance_metric == 'L1':
-                mg = L1_distance(x, y)
-
-            elif distance_metric == 'L2':
-                mg = L2_distance(x, y)
-
-            comp_magn.append((x, y, an_id, mg))
-            magnitudes.append(mg)
-
-        vectors = sorted(comp_magn, key=lambda item: item[3], reverse=True)[
-                  :num_vectors]
-
-        for x, y, marker, distance in vectors:
-
-            try:
-                color = vector_colors_dict[marker]
-            except:
-                color = 'black'
-
-            if show_vectors:
-                ax.plot(ax, [0, x], [0, y], color=color,
-                         linewidth=vector_width)
-
-                if show_vector_labels:
-                    ax.annotate(1.1 * x, 1.1 * y, marker,
-                                color=color,
-                            size=vector_label_size)
+        # # sort features by magnitude/contribution to transformation
+        # x_loading, y_loading = self.components_[:, 0], \
+        #                        self.components_.ix[:, 1]
+        # c_scale = .75 * max([norm(point)
+        #                      for point in self.reduced[:,(0,1)]]) / \
+        #           max([norm(vector) for vector in zip(x_loading, y_loading)])
+        #
+        # comp_magn = []
+        # magnitudes = []
+        # for (x, y, an_id) in zip(x_loading, y_loading, self.X.columns):
+        #
+        #     x = x * c_scale
+        #     y = y * c_scale
+        #
+        #     if distance_metric == 'L1':
+        #         mg = L1_distance(x, y)
+        #
+        #     elif distance_metric == 'L2':
+        #         mg = L2_distance(x, y)
+        #
+        #     comp_magn.append((x, y, an_id, mg))
+        #     magnitudes.append(mg)
+        #
+        # vectors = sorted(comp_magn, key=lambda item: item[3], reverse=True)[
+        #           :num_vectors]
+        #
+        # for x, y, marker, distance in vectors:
+        #
+        #     try:
+        #         color = vector_colors_dict[marker]
+        #     except:
+        #         color = 'black'
+        #
+        #     if show_vectors:
+        #         ax.plot(ax, [0, x], [0, y], color=color,
+        #                  linewidth=vector_width)
+        #
+        #         if show_vector_labels:
+        #             ax.annotate(1.1 * x, 1.1 * y, marker,
+        #                         color=color,
+        #                     size=vector_label_size)
+        pass
 
     def pca_viz(self, celltype=''):
         """Visualizes the clusters on the PCA of the data
