@@ -475,9 +475,9 @@ class ClusteringTester(object):
                                       groupby):
             if label == -1:
                 color = 'k'
-            these_labels = self.labels == label
-            events = np.random.choice(df.index.values, size=n)
-            y = df.values.T
+            # these_labels = self.labels == label
+            events = np.random.choice(df.index.values, size=n, replace=False)
+            y = df.ix[events]
             order = get_switchy_score_order(y)
             events = events[order]
             for event, ax in zip(events, axes):

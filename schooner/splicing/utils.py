@@ -39,5 +39,5 @@ def get_switchy_score_order(x):
     numpy.array
         A 1-D array of the ordered indices, in switchy score order
     """
-    switchy_scores = np.apply_along_axis(switchy_score, axis=0, arr=x)
+    switchy_scores = np.apply_along_axis(switchy_score, axis=1, arr=x)
     return np.argsort(switchy_scores)
