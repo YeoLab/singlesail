@@ -391,6 +391,7 @@ class ClusteringTester(object):
             A figure instance with the PCA, for saving.
 
         """
+        # Fix for n_components = 1
         try:
             self.reduced[:, 1]
         except IndexError:
@@ -400,6 +401,11 @@ class ClusteringTester(object):
         # Plot the decision boundary. For that, we will assign a color to each
         x_min, x_max = self.reduced[:, 0].min(), self.reduced[:, 0].max()
         y_min, y_max = self.reduced[:, 1].min(), self.reduced[:, 1].max()
+
+        # Another fix for n_components = 1
+        if y_min == y_max:
+            y_min -= .5
+            y_max += .5
 
         fig, ax = plt.subplots(figsize=(12,8))
 
