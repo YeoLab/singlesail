@@ -112,7 +112,7 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
 
 
 class Data(object):
-    def __init__(self, psi, n_components, step=0.1,
+    def __init__(self, psi, n_components, binsize=0.1,
                  reducer=PCA):
         """Instantiate a object for psi scores with binned and reduced data
 
@@ -122,7 +122,7 @@ class Data(object):
             A [n_events, n_samples] dataframe of splicing events
         n_components : int
             Number of components to use in the reducer
-        step : float
+        binsize : float
             Value between 0 and 1, the bin size for binning the psi scores
         reducer : sklearn.decomposition object
             An scikit-learn class that reduces the dimensionality of data
@@ -132,15 +132,16 @@ class Data(object):
         """
         self.psi = psi
         self.reducer = reducer
+        self.reducer_name = str(self.reducer).split('.')[-1].rstrip("'>")
         # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
-        self.step = step
+        self.binsize = binsize
         self.n_components = n_components
         self.binify().reduce()
 
     def binify(self):
-        """Bins psi scores from 0 to 1 on the provided step size"""
-        self.bins = np.arange(0, 1+self.step, self.step)
-        ncol = int(1/self.step)
+        """Bins psi scores from 0 to 1 on the provided binsize size"""
+        self.bins = np.arange(0, 1+self.binsize, self.binsize)
+        ncol = int(1/self.binsize)
         nrow = self.psi.shape[0]
         self.binned = np.zeros((nrow, ncol))
         for i, (name, row) in enumerate(self.psi.iterrows()):
@@ -221,8 +222,11 @@ class ClusteringTester(object):
         self.data = data
         self.reduced = self._get_reduced(reduced)
 
+
         cluster_kws = cluster_kws if cluster_kws is not None else {}
         self.clusterer = ClusterMethod(**cluster_kws)
+
+        self.clusterer_name = str(self.clusterer).split('.')[-1].rstrip("'>")
         if ClusterMethod != spectral_clustering:
             self.clusterer.fit(self.reduced)
             self.labels = self.clusterer.labels_
@@ -433,9 +437,9 @@ class ClusteringTester(object):
         self._plot_pca_vectors(ax)
 
         ax.set_title('{} clustering on the {} dataset ({}-reduced data)\n'
-                 'Centroids are marked with black cross (step={:.2f})'
-                     .format(celltype, type(self.clusterer),
-                             repr(self.data.reducer), self.data.step))
+                 'Centroids are marked with black cross (binsize={:.2f})'
+                     .format(celltype, self.clusterer_name,
+                             self.data.reducer_name, self.data.step))
         ax.set_xlim(x_min, x_max)
         ax.set_ylim(y_min, y_max)
         ax.set_xticks(())
