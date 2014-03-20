@@ -42,13 +42,15 @@ def lavalamp(psi, color=None, title='', ax=None):
 
     try:
         # This is a pandas Dataframe
-        y = psi.values.T
+        # y = psi.values.T
+        y = psi.values
     except AttributeError:
         # This is a numpy array
-        y = psi.T
+        # y = psi.T
+        pass
 
     order = get_switchy_score_order(y)
-    y = y[:, order]
+    y = y[order, :]
 
     # Add one so the last value is actually included instead of cut off
     xmax = x.max() + 1
