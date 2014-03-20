@@ -1,14 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from schooner.splicing.utils import get_switchy_score_order
+from schooner.splicing_ignore_me.utils import get_switchy_score_order
 from schooner.colors import dark2
 sns.set_axes_style('nogrid', 'talk')
 
 def lavalamp(psi, color=None, title='', ax=None):
     """Make a 'lavalamp' scatter plot of many spliciang events
 
-    Useful for visualizing many splicing events at once.
+    Useful for visualizing many splicing_ignore_me events at once.
 
     Parameters
     ----------
@@ -55,7 +55,7 @@ def lavalamp(psi, color=None, title='', ax=None):
     ax.scatter(x, y, color=color, alpha=0.5, edgecolor='#262626', linewidth=0.1)
     sns.despine()
     ax.set_ylabel('$\Psi$')
-    ax.set_xlabel('{} splicing events'.format(nrow))
+    ax.set_xlabel('{} splicing_ignore_me events'.format(nrow))
     ax.set_xticks([])
 
     ax.set_xlim(0, xmax)
