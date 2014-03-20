@@ -64,3 +64,30 @@ def lavalamp(psi, color=None, title='', ax=None):
 
     # Return the figure for saving
     return fig
+
+def get_subplots_rows_cols(n):
+    """Given a number of items that needs to be plotted, find the minimum
+    number of rows and columns for subplot axes
+
+    E.g. for plotting a number of cells' expression matrices.
+    Totes stolen from pandas.Dataframe.hist() function.
+
+    Parameters
+    ----------
+    n : int
+        number of items to be plotted
+
+    Returns
+    -------
+    nrows : int
+        Number of rows for a matplotlib.pyplot.subplots() call
+    ncols : int
+        Number of columns for a matplotlib.pyplot.subplots() call
+    """
+    rows, cols = 1, 1
+    while rows * cols < n:
+        if cols > rows:
+            rows += 1
+        else:
+            cols += 1
+    return rows, cols
