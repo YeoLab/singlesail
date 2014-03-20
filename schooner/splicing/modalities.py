@@ -113,7 +113,7 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
 
 class Data(object):
     def __init__(self, psi, n_components, binsize=0.1,
-                 reducer=PCA):
+                 reducer=PCA, figure_dir='.'):
         """Instantiate a object for psi scores with binned and reduced data
 
         Parameters
@@ -132,6 +132,7 @@ class Data(object):
         """
         self.psi = psi
         self.reducer = reducer
+        self.figure_dir = figure_dir.rstrip('/')
         self.reducer_name = str(self.reducer).split('.')[-1].rstrip("'>")
         # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
         self.binsize = binsize
@@ -174,6 +175,9 @@ class Data(object):
         ax.set_ylabel('Fraction explained variance')
         ax.set_title(title)
         sns.despine()
+        fig.savefig('{}/reducer={}_ncomponents={}_explained_variance.svg'
+                    .format(self.figure_dir, self.reducer_name,
+                            self.n_components))
 
     def calculate_distances(self, metric='euclidean'):
         """Creates a squareform distance matrix for clustering fun
