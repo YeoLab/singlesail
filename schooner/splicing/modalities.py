@@ -476,14 +476,13 @@ class ClusteringTester(object):
             if label == -1:
                 color = 'k'
             these_labels = self.labels == label
-            # events = np.random.choice(self.data.psi.index.values[
-            #                               these_labels], size=n)
+            events = np.random.choice(df.index.values, size=n)
             y = df.values.T
             order = get_switchy_score_order(y)
             events = events[order]
             for event, ax in zip(events, axes):
         #         if i % 20 == 0:
-                sns.violinplot(self.data.psi.ix[event], bw=0.1, inner='points',
+                sns.violinplot(df.ix[event], bw=0.1, inner='points',
                                color=color, linewidth=0, ax=ax, alpha=0.75)
                 ax.set_ylim(0, 1)
                 ax.set_xticks([])
