@@ -1,8 +1,4 @@
-schooner
-========
+sailor
+======
 
-Single-cell hub for object-oriented .... exploratory research?
-
-![logo](Sail_plan_schooner.svg)
-
-Logo from http://commons.wikimedia.org/wiki/File:Sail_plan_schooner.svg
+A toolkit to help you **sail** through your single-cell analyses
