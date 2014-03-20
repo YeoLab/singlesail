@@ -391,6 +391,11 @@ class ClusteringTester(object):
             A figure instance with the PCA, for saving.
 
         """
+        try:
+            self.reduced[:, 1]
+        except IndexError:
+            self.reduced = np.hstack([self.reduced,
+                                      np.ones(self.reduced.shape)])
 
         # Plot the decision boundary. For that, we will assign a color to each
         x_min, x_max = self.reduced[:, 0].min(), self.reduced[:, 0].max()
