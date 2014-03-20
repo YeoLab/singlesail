@@ -11,7 +11,7 @@ def readme():
 
 setup(name='sailor',
       version='0.1.0',
-      description='Single-cell hub for object-oriented exploratory research',
+      description='A package to help you sail through single-cell analyses',
       long_description='Functions for common single-cell analyses such as '
                        'PCA, clustering, outlier detection, splicing '
                        'modality clustering, bimodal gene expression '
