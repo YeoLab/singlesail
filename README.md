@@ -1,4 +1,4 @@
 sailor
 ======
 
-A toolkit to help you **sail** through your single-cell analyses
+A toolkit to help **sail** you through single-cell analyses
