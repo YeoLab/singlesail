@@ -290,20 +290,20 @@ class ClusteringTester(object):
             #                  'or "binned", not {}'.format(reduced))
         return reduced_data
 
-    def _hist(self, ax, label, color):
+    def _hist(self, ax, label, df, color):
         """Plot histograms of the psi scores of one label"""
-        ax.hist(self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.flat,
+        ax.hist(df.values.flat,
                 bins=np.arange(0, 1.05, 0.05), facecolor=color, linewidth=0.1)
         ax.set_title('Cluster: {}'.format(label))
         ax.set_xlim(0,1)
         sns.despine()
 
-    def _lavalamp(self, ax, label, color):
+    def _lavalamp(self, ax, label, df, color):
         """makes a lavalamp of psi scores of one label"""
         ind = self.labels == label
         n_events = (ind).sum()
-        y = self.data.psi.ix[self.data.psi.index.values[ind], :]
-        lavalamp(y, color=color, ax=ax, title='n = {}'.format(n_events))
+        # y = self.data.psi.ix[self.data.psi.index.values[ind], :]
+        lavalamp(df, color=color, ax=ax, title='n = {}'.format(n_events))
 
     def hist_lavalamp(self):
         """Plot a histogram and _lavalamp for all the clusters
@@ -318,13 +318,15 @@ class ClusteringTester(object):
         self.color_cycle = cycle(self.colors)
 
         fig = plt.figure(figsize=(16, 4*self.n_clusters))
-        for i, (label, color) in enumerate(zip(self.labels_unique,
-                                          self.color_cycle)):
-            if label % 10 == 0:
+        index_to_label = dict(zip(self.data.psi.index, self.labels))
+        groupby = self.data.psi.groupby(index_to_label)
+        for i, (color, (label, df)) in enumerate(zip(self.color_cycle,
+                                               groupby)):
+            if label % 10 == 1:
                 print 'plotting cluster {} of {}'.format(label, self.n_clusters)
             if label == -1:
                 color = 'k'
-            n_samples_in_cluster = (self.labels == label).sum()
+            n_samples_in_cluster = df.shape[0]
             if n_samples_in_cluster <= 5:
                 continue
 
@@ -334,8 +336,8 @@ class ClusteringTester(object):
             lavalamp_ax = plt.subplot2grid((self.n_clusters, 5), (i, 1),
                                            colspan=4, rowspan=1)
 
-            self._hist(hist_ax, label, color=color)
-            self._lavalamp(lavalamp_ax, label, color=color)
+            self._hist(hist_ax, label, df, color=color)
+            self._lavalamp(lavalamp_ax, label, df, color=color)
         fig.tight_layout()
         return fig
 
