@@ -411,9 +411,12 @@ class ClusteringTester(object):
         except IndexError:
             self.reduced = np.hstack([self.reduced,
                                       np.ones(self.reduced.shape)])
-            self.clusterer.cluster_centers_ = np.hstack(
-                [self.clusterer.cluster_centers_,
-                 np.ones(self.clusterer.cluster_centers_.shape)])
+            try:
+                self.clusterer.cluster_centers_ = np.hstack(
+                    [self.clusterer.cluster_centers_,
+                     np.ones(self.clusterer.cluster_centers_.shape)])
+            except AttributeError:
+                pass
 
         # Plot the decision boundary. For that, we will assign a color to each
         x_min, x_max = self.reduced[:, 0].min(), self.reduced[:, 0].max()
