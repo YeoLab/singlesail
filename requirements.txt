@@ -1,9 +1,0 @@
-numpy
-scipy
-matplotlib
-pandas
-statsmodels
-patsy
-seaborn
-scikit-learn
-scikit-fuzzy
