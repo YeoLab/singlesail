@@ -464,6 +464,7 @@ class ClusteringTester(object):
         ax.set_xticks(())
         ax.set_yticks(())
         sns.despine(left=True, bottom=True)
+        fig.tight_layout()
         return fig
 
     def violinplot_random_cluster_members(self, n=20):
