@@ -230,7 +230,7 @@ class ClusteringTester(object):
         cluster_kws = cluster_kws if cluster_kws is not None else {}
         self.clusterer = ClusterMethod(**cluster_kws)
 
-        self.clusterer_name = str(self.clusterer).split('.')[-1].rstrip("'>")
+        self.clusterer_name = str(self.clusterer).split('(')[0]
         if ClusterMethod != spectral_clustering:
             self.clusterer.fit(self.reduced)
             self.labels = self.clusterer.labels_
