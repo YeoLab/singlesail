@@ -411,7 +411,7 @@ class ClusteringTester(object):
         except IndexError:
             self.reduced = np.hstack([self.reduced,
                                       np.ones(self.reduced.shape)])
-            self.centroids = np.hstack(
+            self.clusterer.cluster_centers_ = np.hstack(
                 [self.clusterer.cluster_centers_,
                  np.ones(self.clusterer.cluster_centers_.shape)])
 
