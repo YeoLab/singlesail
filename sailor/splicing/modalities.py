@@ -334,8 +334,8 @@ class ClusteringTester(object):
         groupby = self.data.psi.groupby(index_to_label)
         for i, (color, (label, df)) in enumerate(zip(self.color_cycle,
                                                groupby)):
-            if label % 10 == 1:
-                print 'plotting cluster {} of {}'.format(label, self.n_clusters)
+            # if label % 10 == 1:
+            #     print 'plotting cluster {} of {}'.format(label, self.n_clusters)
             if label == -1:
                 color = 'k'
             n_samples_in_cluster = df.shape[0]
