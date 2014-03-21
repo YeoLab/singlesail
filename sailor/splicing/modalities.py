@@ -448,7 +448,8 @@ class ClusteringTester(object):
                    color=color_list, alpha=0.25, linewidth=0.1, edgecolor='#262626')
 
         # plot origin
-        ax.scatter([0],[0], color='k', marker='+', s=100, zorder=100)
+        ax.scatter([0],[0], color='k', marker='+', s=100, zorder=100,
+                   linewidth=3)
 
         self._annotate_centers(ax)
 
