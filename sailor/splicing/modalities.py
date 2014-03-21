@@ -446,6 +446,10 @@ class ClusteringTester(object):
                       for label in self.labels]
         ax.scatter(self.reduced[:, 0], self.reduced[:, 1],
                    color=color_list, alpha=0.25, linewidth=0.1, edgecolor='#262626')
+
+        # plot origin
+        ax.scatter([0],[0], color='k', marker='+', s=100, zorder=100)
+
         self._annotate_centers(ax)
 
         self._plot_pca_vectors(ax)
