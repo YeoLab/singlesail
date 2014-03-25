@@ -11,8 +11,8 @@ from sklearn.cluster import KMeans, spectral_clustering
 from sklearn.decomposition import PCA
 import seaborn as sns
 
-from sailor.splicing.utils import get_switchy_score_order
-from sailor.splicing.viz import lavalamp
+from singlesail.splicing.utils import get_switchy_score_order
+from singlesail.splicing.viz import lavalamp
 
 sns.set_axes_style('nogrid', 'talk')
 
