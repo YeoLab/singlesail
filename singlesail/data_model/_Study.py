@@ -1,7 +1,7 @@
-from schooner import parsers
-from schooner.data_model import ExpressionData, SplicingData
+from singlesail import parsers
+from singlesail.data_model import ExpressionData, SplicingData
 
-class Experiment(object):
+class Study(object):
     """
 
     Attributes
@@ -15,7 +15,7 @@ class Experiment(object):
 
     def __init__(self, sample_info_filename, expression_matrix_filename,
                  splicing_info_filename):
-        """Constructor for Experiment object containing gene expression and
+        """Constructor for Study object containing gene expression and
         alternative splicing data.
 
         Parameters

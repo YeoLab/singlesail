@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from schooner.splicing_ignore_me.utils import get_switchy_score_order
-from schooner.colors import dark2
+from singlesail.splicing_ignore_me.utils import get_switchy_score_order
+from singlesail.colors import dark2
 sns.set_axes_style('nogrid', 'talk')
 
 def lavalamp(psi, color=None, title='', ax=None):
@@ -48,7 +48,7 @@ def lavalamp(psi, color=None, title='', ax=None):
         y = psi.T
 
     order = get_switchy_score_order(y)
-    y = y[:, order]
+    y = y[order, :]
 
     # Add one so the last value is actually included instead of cut off
     xmax = x.max() + 1

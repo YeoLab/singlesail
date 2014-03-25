@@ -1,4 +1,4 @@
-from schooner.data_model import Data
+from singlesail.data_model import Data
 
 class ExpressionData(Data):
     """Data model for gene expression data
