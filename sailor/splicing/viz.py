@@ -36,7 +36,7 @@ def lavalamp(psi, color=None, title='', ax=None):
     else:
         fig = plt.gcf()
     nrow, ncol = psi.shape
-    x = np.vstack(np.arange(nrow) for _ in range(ncol))
+    x = np.vstack(np.ones(nrow) * i for i in range(ncol))
 
     color = dark2[0] if color is None else color
 
