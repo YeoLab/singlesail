@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c1a0cf7c-4020-4b8c-8519-987b9471ed33" name="Default" comment="" />
+    <ignored path="schooner.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="schooner" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/schooner/pca.py" />
+        <option value="$PROJECT_DIR$/schooner/api_plan.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/api_plan.md" />
+        <option value="$PROJECT_DIR$/schooner/modalities.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/schooner/__init__.py" />
+        <option value="$PROJECT_DIR$/schooner/colors.py" />
+        <option value="$PROJECT_DIR$/schooner/data_model/_ExpressionData.py" />
+        <option value="$PROJECT_DIR$/schooner/parsers.py" />
+        <option value="$PROJECT_DIR$/schooner/data_model/_Experiment.py" />
+        <option value="$PROJECT_DIR$/schooner/data_model/__init__.py" />
+        <option value="$PROJECT_DIR$/schooner/data_model/_Data.py" />
+        <option value="$PROJECT_DIR$/schooner/splicing_ignore_me/modalities.py" />
+        <option value="$PROJECT_DIR$/schooner/data_model/_SplicingData.py" />
+        <option value="$PROJECT_DIR$/schooner/splicing/utils.py" />
+        <option value="$PROJECT_DIR$/schooner/splicing/viz.py" />
+        <option value="$PROJECT_DIR$/schooner/splicing/modalities.py" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/sailor/splicing/modalities.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="22" />
+    <option name="width" value="1440" />
+    <option name="height" value="874" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>CoffeeScript</id>
+          </State>
+          <State>
+            <id>Control flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Data flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Error handlingJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsJavaScript</id>
+          </State>
+          <State>
+            <id>Probable bugsCoffeeScript</id>
+          </State>
+          <State>
+            <id>Probable bugsJavaScript</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Bash</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="false" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sailor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sailor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sailor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="options.lastSelected" value="editing.templates" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="50" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="51" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="53" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="522" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="50" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="51" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="53" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="522" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings />
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/schooner/splicing" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="schooner" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="schooner" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="schooner" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="schooner" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="schooner" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="schooner" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="schooner" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c1a0cf7c-4020-4b8c-8519-987b9471ed33" name="Default" comment="" />
+      <created>1394655279788</created>
+      <updated>1394655279788</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Began writing API files">
+      <created>1394731396010</created>
+      <updated>1394731396010</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Moved API plan md and added gitignore">
+      <created>1394731500157</created>
+      <updated>1394731500157</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added example pipeline to api plan">
+      <created>1394732877237</created>
+      <updated>1394732877237</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Trying to ignore all pycharm files">
+      <created>1394732912531</created>
+      <updated>1394732912531</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Trying to ignore all pycharm files">
+      <created>1394732960466</created>
+      <updated>1394732960466</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added clarification on tidy data">
+      <created>1394733032307</created>
+      <updated>1394733032307</updated>
+    </task>
+    <task id="LOCAL-00007" summary="removed pca.py file because it's empty and not sure how to design the API yet">
+      <created>1394733264386</created>
+      <updated>1394733264386</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added comment about fluidigm's SingulaR and about tunable parameters">
+      <created>1394733731460</created>
+      <updated>1394733731460</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Talked to Cedric from the Gage lab and got some more ideas">
+      <created>1394735438016</created>
+      <updated>1394735438016</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Clarified &quot;data&quot;">
+      <created>1394735539592</created>
+      <updated>1394735539592</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added question about ID mapping">
+      <created>1394737234558</created>
+      <updated>1394737234558</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixed typo">
+      <created>1394740077165</created>
+      <updated>1394740077165</updated>
+    </task>
+    <task id="LOCAL-00013" summary="expanded on seaborn dependencies">
+      <created>1394812478441</created>
+      <updated>1394812478441</updated>
+    </task>
+    <task id="LOCAL-00014" summary="added question about the audience">
+      <created>1394822183378</created>
+      <updated>1394822183378</updated>
+    </task>
+    <task id="LOCAL-00015" summary="do we really need them to specify miso splice type?">
+      <created>1394822285829</created>
+      <updated>1394822285829</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Initial commit of modalities">
+      <created>1395167894323</created>
+      <updated>1395167894323</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Adding docstrings, specified schooner as &quot;exploratory research&quot;">
+      <created>1395168706173</created>
+      <updated>1395168706173</updated>
+    </task>
+    <task id="LOCAL-00018" summary="More docstrings explaing ClusterTester">
+      <created>1395170069664</created>
+      <updated>1395170069664</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added miso summary parser for a sample info filename">
+      <created>1395177410911</created>
+      <updated>1395177410911</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added setup.py">
+      <created>1395177661442</created>
+      <updated>1395177661442</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fixed sklearn and possibly skfuzzy requirements">
+      <created>1395177883968</created>
+      <updated>1395177883968</updated>
+    </task>
+    <task id="LOCAL-00022" summary="still trying to fix sklearn and skfuzzy requirements">
+      <created>1395178038474</created>
+      <updated>1395178038474</updated>
+    </task>
+    <task id="LOCAL-00023" summary="trying dependency_links in setup.py">
+      <created>1395178270174</created>
+      <updated>1395178270174</updated>
+    </task>
+    <task id="LOCAL-00024" summary="added imports from parsers to schooner's __init__.py">
+      <created>1395178491151</created>
+      <updated>1395178491151</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fixing get_miso_summaries to iterate on row index">
+      <created>1395179369624</created>
+      <updated>1395179369624</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Added progress statements to miso parsing">
+      <created>1395179850714</created>
+      <updated>1395179850714</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Added newlines to progress statements">
+      <created>1395180686022</created>
+      <updated>1395180686022</updated>
+    </task>
+    <task id="LOCAL-00028" summary="removed iterating through the row index and adding it to the DF -  can do a join later">
+      <created>1395181188578</created>
+      <updated>1395181188578</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added sample_id back to summary.. it got removed">
+      <created>1395183477640</created>
+      <updated>1395183477640</updated>
+    </task>
+    <task id="LOCAL-00030" summary="remove returning of self from FuzzyCMeans">
+      <created>1395184263202</created>
+      <updated>1395184263202</updated>
+    </task>
+    <task id="LOCAL-00031" summary="fixing ax._hist --&gt; ax.hist">
+      <created>1395184471252</created>
+      <updated>1395184471252</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Trying to fix figure making for hist_lavalamp">
+      <created>1395184664503</created>
+      <updated>1395184664503</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fixing all-clusters violinplot figure">
+      <created>1395185051268</created>
+      <updated>1395185051268</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Fixing pandas indexing error in violinplot_random_cluster_members">
+      <created>1395185691536</created>
+      <updated>1395185691536</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Fixing violinplot axes making">
+      <created>1395186000322</created>
+      <updated>1395186000322</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Fixing violinplot axes making">
+      <created>1395186030240</created>
+      <updated>1395186030240</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fixing _lavalamp">
+      <created>1395186245380</created>
+      <updated>1395186245380</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Fixing annotate_centers to just check for cluster_centers_">
+      <created>1395187841010</created>
+      <updated>1395187841010</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Separated out lavalamp into schooner.splicing.viz">
+      <created>1395249271659</created>
+      <updated>1395249271659</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Fixed bug in ClusterTester after moving lavalamp out">
+      <created>1395249476630</created>
+      <updated>1395249476630</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Added comment about PCA color labels and pretty-formatted some lines">
+      <created>1395249640543</created>
+      <updated>1395249640543</updated>
+    </task>
+    <task id="LOCAL-00042" summary="trying to fix hist_lavalamp">
+      <created>1395251531564</created>
+      <updated>1395251531564</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Fixed BrewerMap not indexing error">
+      <created>1395255561805</created>
+      <updated>1395255561805</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Removed the option to reduce the Psi data directly, and now we're only working with the binned data">
+      <created>1395259875366</created>
+      <updated>1395259875366</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Added fig tight layout for hist_lavalamp and violinplot_random_cluster_members">
+      <created>1395261310642</created>
+      <updated>1395261310642</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Added option for any arbitrary data dimensionality reducer, not just PCA">
+      <created>1395264602977</created>
+      <updated>1395264602978</updated>
+    </task>
+    <task id="LOCAL-00047" summary="added some documentation on Data object">
+      <created>1395264887009</created>
+      <updated>1395264887009</updated>
+    </task>
+    <task id="LOCAL-00048" summary="documentation is glorious!">
+      <created>1395265199646</created>
+      <updated>1395265199646</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Added seaborn axes style as nogrid to schooner.splicing.viz">
+      <created>1395267756687</created>
+      <updated>1395267756688</updated>
+    </task>
+    <task id="LOCAL-00050" summary="removed xticks from lavalamp">
+      <created>1395271418808</created>
+      <updated>1395271418808</updated>
+    </task>
+    <task id="LOCAL-00051" summary="added different representation of reducer for name in the plot">
+      <created>1395271868313</created>
+      <updated>1395271868313</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Starting to write out data model">
+      <created>1395333337352</created>
+      <updated>1395333337352</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Wrote out skeletons for Data, ExpressionData, SplicingData, Experiment">
+      <created>1395335650795</created>
+      <updated>1395335650795</updated>
+    </task>
+    <task id="LOCAL-00054" summary="added graceful exception when n_components=1 (hopefully)&#10;">
+      <created>1395349861988</created>
+      <updated>1395349861988</updated>
+    </task>
+    <task id="LOCAL-00055" summary="fixed ymax ymin of pca viz for ncomponents=1">
+      <created>1395350034799</created>
+      <updated>1395350034799</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Added function to get minimum number of columns and rows for a plt.subplots() call">
+      <created>1395351926234</created>
+      <updated>1395351926234</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Changed violinplot to use groupbys">
+      <created>1395353263701</created>
+      <updated>1395353263701</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Fixing hist_lavalamp to use groupbys??">
+      <created>1395353585758</created>
+      <updated>1395353585759</updated>
+    </task>
+    <task id="LOCAL-00059" summary="added Data.reducer_name and ClusteringTester.clusterer_name for prettyprinting">
+      <created>1395354480338</created>
+      <updated>1395354480338</updated>
+    </task>
+    <task id="LOCAL-00060" summary="fixing violinplot random event choosing with the groupby">
+      <created>1395354588445</created>
+      <updated>1395354588445</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Fixing get_switchy_score axes bug">
+      <created>1395354938300</created>
+      <updated>1395354938300</updated>
+    </task>
+    <task id="LOCAL-00062" summary="fixing lavalamp with get_switchy_score bug">
+      <created>1395355037441</created>
+      <updated>1395355037441</updated>
+    </task>
+    <task id="LOCAL-00063" summary="added figure_dir param to Data init for saving explained variance figures">
+      <created>1395355326597</created>
+      <updated>1395355326597</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Added logo from http://commons.wikimedia.org/wiki/File:Sail_plan_schooner.svg">
+      <created>1395355430257</created>
+      <updated>1395355430257</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Added logo citation">
+      <created>1395355439882</created>
+      <updated>1395355439882</updated>
+    </task>
+    <task id="LOCAL-00066" summary="hopefully fixed logo image calling for readme">
+      <created>1395355471022</created>
+      <updated>1395355471022</updated>
+    </task>
+    <task id="LOCAL-00067" summary="added log ofor real!">
+      <created>1395355500543</created>
+      <updated>1395355500543</updated>
+    </task>
+    <task id="LOCAL-00068" summary="changed name to sailor andf fixing step--&gt;binsize bug">
+      <created>1395356896791</created>
+      <updated>1395356896791</updated>
+    </task>
+    <task id="LOCAL-00069" summary="reworded readme">
+      <created>1395356983936</created>
+      <updated>1395356983936</updated>
+    </task>
+    <task id="LOCAL-00070" summary="added exception if there are too many clusters for plotting">
+      <created>1395359777225</created>
+      <updated>1395359777225</updated>
+    </task>
+    <task id="LOCAL-00071" summary="changed setup.py desctription">
+      <created>1395359960128</created>
+      <updated>1395359960128</updated>
+    </task>
+    <task id="LOCAL-00072" summary="added code to modifiy centriods as well for n_components=1">
+      <created>1395360692971</created>
+      <updated>1395360692971</updated>
+    </task>
+    <task id="LOCAL-00073" summary="fixing centroids--&gt;cluster_centers_">
+      <created>1395360986738</created>
+      <updated>1395360986738</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Removed hist_lavalamp printing output">
+      <created>1395361319458</created>
+      <updated>1395361319459</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Added exception for n_components=1 but no cluster_centers_">
+      <created>1395361389594</created>
+      <updated>1395361389594</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Added origin plotting for reduced visualiztion">
+      <created>1395361698067</created>
+      <updated>1395361698067</updated>
+    </task>
+    <task id="LOCAL-00077" summary="increased linewidth of origin marker">
+      <created>1395361737441</created>
+      <updated>1395361737441</updated>
+    </task>
+    <task id="LOCAL-00078" summary="fixed ClusteringTester.clusterer_name stringification">
+      <created>1395361888794</created>
+      <updated>1395361888794</updated>
+    </task>
+    <task id="LOCAL-00079" summary="added tight_layout to the pca">
+      <created>1395429241143</created>
+      <updated>1395429241143</updated>
+    </task>
+    <task id="LOCAL-00080" summary="changed build dir in makefuile&#10;">
+      <created>1395707971803</created>
+      <updated>1395707971803</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19722222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+    <MESSAGE value="Added function to get minimum number of columns and rows for a plt.subplots() call" />
+    <MESSAGE value="Changed violinplot to use groupbys" />
+    <MESSAGE value="Fixing hist_lavalamp to use groupbys??" />
+    <MESSAGE value="added Data.reducer_name and ClusteringTester.clusterer_name for prettyprinting" />
+    <MESSAGE value="fixing violinplot random event choosing with the groupby" />
+    <MESSAGE value="Fixing get_switchy_score axes bug" />
+    <MESSAGE value="fixing lavalamp with get_switchy_score bug" />
+    <MESSAGE value="added figure_dir param to Data init for saving explained variance figures" />
+    <MESSAGE value="Added logo from http://commons.wikimedia.org/wiki/File:Sail_plan_schooner.svg" />
+    <MESSAGE value="Added logo citation" />
+    <MESSAGE value="hopefully fixed logo image calling for readme" />
+    <MESSAGE value="added log ofor real!" />
+    <MESSAGE value="changed name to sailor andf fixing step--&gt;binsize bug" />
+    <MESSAGE value="reworded readme" />
+    <MESSAGE value="added exception if there are too many clusters for plotting" />
+    <MESSAGE value="changed setup.py desctription" />
+    <MESSAGE value="added code to modifiy centriods as well for n_components=1" />
+    <MESSAGE value="fixing centroids--&gt;cluster_centers_" />
+    <MESSAGE value="Removed hist_lavalamp printing output" />
+    <MESSAGE value="Added exception for n_components=1 but no cluster_centers_" />
+    <MESSAGE value="Added origin plotting for reduced visualiztion" />
+    <MESSAGE value="increased linewidth of origin marker" />
+    <MESSAGE value="fixed ClusteringTester.clusterer_name stringification" />
+    <MESSAGE value="added tight_layout to the pca" />
+    <MESSAGE value="changed build dir in makefuile&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed build dir in makefuile&#10;" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+</project>
+
