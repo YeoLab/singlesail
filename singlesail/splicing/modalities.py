@@ -113,7 +113,7 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
 
 
 class Data(object):
-    def __init__(self, psi, n_components, step=0.1,
+    def __init__(self, psi, n_components, binsize=0.1, figure_dir='.',
                  reducer=PCA, reducer_kws=None):
         """Instantiate a object for psi scores with binned and reduced data
 
@@ -123,7 +123,7 @@ class Data(object):
             A [n_events, n_samples] dataframe of splicing events
         n_components : int
             Number of components to use in the reducer
-        step : float
+        binsize : float
             Value between 0 and 1, the bin size for binning the psi scores
         reducer : sklearn.decomposition object
             An scikit-learn class that reduces the dimensionality of data
@@ -135,15 +135,18 @@ class Data(object):
         self.reducer = reducer
         self.reducer_kws = reducer_kws
 
+        self.figure_dir = figure_dir
+        self.reducer_name = str(self.reducer).split('.')[-1].rstrip("'>")
+
         # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
-        self.step = step
+        self.binsize = binsize
         self.n_components = n_components
         self.binify().reduce()
 
     def binify(self):
-        """Bins psi scores from 0 to 1 on the provided step size"""
-        self.bins = np.arange(0, 1+self.step, self.step)
-        ncol = int(1/self.step)
+        """Bins psi scores from 0 to 1 on the provided binsize size"""
+        self.bins = np.arange(0, 1+self.binsize, self.binsize)
+        ncol = int(1/self.binsize)
         nrow = self.psi.shape[0]
         self.binned = np.zeros((nrow, ncol))
         for i, (name, row) in enumerate(self.psi.iterrows()):
@@ -175,6 +178,9 @@ class Data(object):
         ax.set_ylabel('Fraction explained variance')
         ax.set_title(title)
         sns.despine()
+        fig.savefig('{}/{}_binsize={}_ncomponents={}_explained_variance.pdf'
+                    .format(self.figure_dir, self.reducer_name, self.binsize,
+                            self.n_components))
 
     def calculate_distances(self, metric='euclidean'):
         """Creates a squareform distance matrix for clustering fun
@@ -425,7 +431,7 @@ class ClusteringTester(object):
         self._plot_pca_vectors(ax)
 
         ax.set_title('{} clustering on the {} dataset ({}-reduced data)\n'
-                 'Centroids are marked with black cross (step={:.2f})'
+                 'Centroids are marked with black cross (binsize={:.2f})'
                      .format(celltype, type(self.clusterer),
                              repr(self.data.reducer), self.data.step))
         ax.set_xlim(x_min, x_max)

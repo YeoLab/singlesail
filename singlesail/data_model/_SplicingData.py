@@ -14,7 +14,7 @@ class SplicingData(Data):
             A [n_events, n_samples] dataframe of splicing events
         n_components : int
             Number of components to use in the reducer
-        step : float
+        binsize : float
             Value between 0 and 1, the bin size for binning the data scores
         reducer : sklearn.decomposition object
             An scikit-learn class that reduces the dimensionality of data
@@ -30,7 +30,7 @@ class SplicingData(Data):
         self.binify().reduce()
 
     def binify(self):
-        """Bins psi scores from 0 to 1 on the provided step size"""
+        """Bins psi scores from 0 to 1 on the provided binsize size"""
         self.bins = np.arange(0, 1+self.step, self.step)
         ncol = int(1/self.step)
         nrow = self.psi.shape[0]
