@@ -13,7 +13,7 @@ setup(name='singlesail',
       version='0.1.0',
       description='Single-cell hub for object-oriented exploratory research',
       long_description='Functions for common single-cell analyses such as '
-                       'PCA, clustering, outlier detection, splicing_ignore_me '
+                       'PCA, clustering, outlier detection, splicing '
                        'modality clustering, bimodal gene expression '
                        'detection.',
       url='http://github.com/YeoLab/singlesail',

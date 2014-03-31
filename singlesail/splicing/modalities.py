@@ -12,8 +12,8 @@ from sklearn.cluster import KMeans, spectral_clustering
 from sklearn.decomposition import PCA
 import seaborn as sns
 
-from singlesail.splicing_ignore_me.utils import get_switchy_score_order
-from singlesail.splicing_ignore_me.viz import lavalamp
+from singlesail.splicing.utils import get_switchy_score_order
+from singlesail.splicing.viz import lavalamp
 
 sns.set_axes_style('nogrid', 'talk')
 
@@ -114,13 +114,13 @@ class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
 
 class Data(object):
     def __init__(self, psi, n_components, step=0.1,
-                 reducer=PCA):
+                 reducer=PCA, reducer_kws=None):
         """Instantiate a object for psi scores with binned and reduced data
 
         Parameters
         ----------
         psi : pandas.DataFrame
-            A [n_events, n_samples] dataframe of splicing_ignore_me events
+            A [n_events, n_samples] dataframe of splicing events
         n_components : int
             Number of components to use in the reducer
         step : float
@@ -133,6 +133,8 @@ class Data(object):
         """
         self.psi = psi
         self.reducer = reducer
+        self.reducer_kws = reducer_kws
+
         # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
         self.step = step
         self.n_components = n_components
@@ -151,17 +153,14 @@ class Data(object):
     def reduce(self):
         """Reduces dimensionality of the binned psi score data
         """
-        # self.pca_psi = PCA(n_components=self.n_components).fit(self.psi_fillna_mean)
-        # self.reduced_psi = self.pca_psi.transform(self.psi_fillna_mean)
-        # self.plot_explained_variance(self.pca_psi,
-        #                              'PCA on psi (fillna with mean of event)')
-
-        self.reducer_fit_to_binned = self.reducer(n_components=self.n_components).fit(self
+        reducer_kws = {} if self.reducer_kws is None else self.reducer_kws
+        reducer_kws.setdefault('n_components', self.n_components)
+        self.reducer_fit = self.reducer(**reducer_kws).fit(self
                                                                     .binned)
-        self.reduced_binned = self.reducer_fit_to_binned.transform(self.binned)
-        if hasattr(self.reducer_fit_to_binned, 'explained_variance_ratio_'):
+        self.reduced_binned = self.reducer_fit.transform(self.binned)
+        if hasattr(self.reducer_fit, 'explained_variance_ratio_'):
 
-            self.plot_explained_variance(self.reducer_fit_to_binned,
+            self.plot_explained_variance(self.reducer_fit,
                                          '{} on binned data'.format(self.reducer))
         return self
 
@@ -402,7 +401,7 @@ class ClusteringTester(object):
         x_min, x_max = self.reduced[:, 0].min(), self.reduced[:, 0].max()
         y_min, y_max = self.reduced[:, 1].min(), self.reduced[:, 1].max()
 
-        fig, ax = plt.subplots(figsize=(12,8))
+        fig, ax = plt.subplots(figsize=(12, 8))
 
         # Reset the color cycle in case we already cycled through it
         self.color_cycle = cycle(self.colors)

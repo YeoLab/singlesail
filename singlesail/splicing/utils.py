@@ -17,7 +17,7 @@ def switchy_score(array):
     -------
     float
         The "switchy score" of the data which can then be compared to other
-        splicing_ignore_me event data
+        splicing event data
 
     @author Michael T. Lovci
     """

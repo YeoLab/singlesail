@@ -11,7 +11,7 @@ class SplicingData(Data):
         Parameters
         ----------
         data : pandas.DataFrame
-            A [n_events, n_samples] dataframe of splicing_ignore_me events
+            A [n_events, n_samples] dataframe of splicing events
         n_components : int
             Number of components to use in the reducer
         step : float
