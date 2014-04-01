@@ -132,7 +132,7 @@ class Data(object):
 
         """
         self.psi = psi
-        self.reducer = reducer
+        # self.reducer = reducer
         self.reducer_kws = reducer_kws
 
         self.figure_dir = figure_dir
@@ -141,7 +141,7 @@ class Data(object):
         # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
         self.binsize = binsize
         self.n_components = n_components
-        self.binify().reduce()
+        self.binify().reduce(reducer)
 
     def binify(self):
         """Bins psi scores from 0 to 1 on the provided binsize size"""
@@ -153,17 +153,16 @@ class Data(object):
             self.binned[i,:] = np.histogram(row, bins=self.bins, normed=True)[0]
         return self
 
-    def reduce(self):
+    def reduce(self, reducer):
         """Reduces dimensionality of the binned psi score data
         """
         reducer_kws = {} if self.reducer_kws is None else self.reducer_kws
         reducer_kws.setdefault('n_components', self.n_components)
-        self.reducer_fit = self.reducer(**reducer_kws).fit(self
-                                                                    .binned)
-        self.reduced_binned = self.reducer_fit.transform(self.binned)
-        if hasattr(self.reducer_fit, 'explained_variance_ratio_'):
+        self.reducer = reducer(**reducer_kws).fit(self.binned)
+        self.reduced_binned = self.reducer.transform(self.binned)
+        if hasattr(self.reducer, 'explained_variance_ratio_'):
 
-            self.plot_explained_variance(self.reducer_fit,
+            self.plot_explained_variance(self.reducer,
                                          '{} on binned data'.format(self.reducer))
         return self
 
