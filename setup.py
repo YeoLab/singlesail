@@ -24,9 +24,6 @@ setup(name='sailor',
       packages=find_packages(),
       install_requires=map(lambda x: x.rstrip(),
                            open('requirements.txt').readlines()),
-      dependency_links=
-      ['https://github.com/scikit-fuzzy/scikit-fuzzy/tarball/master#egg'
-                        '=scikit-fuzzy'],
       zip_safe=False,
       test_suite='nose.collector',
       tests_require=['nose'],
