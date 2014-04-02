@@ -136,7 +136,7 @@ class Data(object):
         self.reducer_kws = reducer_kws
 
         self.figure_dir = figure_dir
-        self.reducer_name = str(self.reducer).split('.')[-1].rstrip("'>")
+        self.reducer_name = str(reducer).split('.')[-1].rstrip("'>")
 
         # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
         self.binsize = binsize
