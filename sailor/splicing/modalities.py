@@ -431,7 +431,7 @@ class ClusteringTester(object):
         ax.set_title('{} clustering on the {} dataset ({}-reduced data)\n'
                  'Centroids are marked with black cross (binsize={:.2f})'
                      .format(celltype, type(self.clusterer),
-                             repr(self.data.reducer), self.data.step))
+                             repr(self.data.reducer), self.data.binsize))
         ax.set_xlim(x_min, x_max)
         ax.set_ylim(y_min, y_max)
         ax.set_xticks(())
