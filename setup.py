@@ -9,7 +9,6 @@ def readme():
         return f.read()
 
 
-<<<<<<< HEAD
 setup(name='sailor',
       version='0.1.0',
       description='Single-cell mRNA seq analysis package',
