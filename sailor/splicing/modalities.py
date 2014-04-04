@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 import brewer2mpl
 from itertools import cycle
-from scipy.spatial.distance import pdist, squareform
+# from scipy.spatial.distance import pdist, squareform
 import skfuzzy
 from sklearn.base import BaseEstimator, ClusterMixin, TransformerMixin
 from sklearn.cluster import KMeans, spectral_clustering
@@ -180,18 +180,18 @@ class Data(object):
                     .format(self.figure_dir, self.reducer_name, self.binsize,
                             self.n_components))
 
-    def calculate_distances(self, metric='euclidean'):
-        """Creates a squareform distance matrix for clustering fun
-
-        Needed for some clustering algorithms
-
-        Parameters
-        ----------
-        metric : str
-            One of any valid scipy.distance metric strings
-        """
-        self.pdist = squareform(pdist(self.binned, metric=metric))
-        return self
+    # def calculate_distances(self, metric='euclidean'):
+    #     """Creates a squareform distance matrix for clustering fun
+    #
+    #     Needed for some clustering algorithms
+    #
+    #     Parameters
+    #     ----------
+    #     metric : str
+    #         One of any valid scipy.distance metric strings
+    #     """
+    #     self.pdist = squareform(pdist(self.binned, metric=metric))
+    #     return self
 
 
 
