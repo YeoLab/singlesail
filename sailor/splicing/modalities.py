@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import brewer2mpl
 from itertools import cycle
 # from scipy.spatial.distance import pdist, squareform
-import skfuzzy
+# import skfuzzy
 from sklearn.base import BaseEstimator, ClusterMixin, TransformerMixin
 from sklearn.cluster import KMeans, spectral_clustering
 from sklearn.decomposition import PCA
@@ -17,98 +17,98 @@ from sailor.splicing.viz import lavalamp
 
 sns.set_axes_style('nogrid', 'talk')
 
-class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
-    """Class for Fuzzy C-means clustering in scikit-learn cluster class format
-
-    Implements the objective function as described:
-    http://en.wikipedia.org/wiki/Fuzzy_clustering
-
-    Parameters
-    ----------
-    n_clusters : int
-        number of clusters to estimate
-    exponent : float
-        Exponent of objective function
-    min_error : float
-        The threshold at which if the objective function does not change by
-        more than this, the iterations are stopped.
-    max_iter : int
-         Maximum number of iterations
-
-    Attributes
-    ----------
-    `cluster_centers_` : array, [n_clusters, n_features]
-        Coordinates of cluster centers
-
-    `labels_` :
-        Labels of each point
-
-    `inertia_` : float
-        The value of the inertia criterion associated with the chosen
-        partition.
-
-    Methods
-    -------
-    fit
-        Like sklearn.cluster.KMeans, fit a matrix with samples to classify on
-        the rows and features on the columns to the number of clusters.
-        Basically, 'perform clustering'
-    """
-    def __init__(self, n_clusters=8, exponent=2, min_error=0.01, max_iter=100):
-        """Initialize a Fuzzy C-Means clusterer
-
-        Parameters
-        ----------
-        n_clusters : int
-            number of clusters to estimate
-        exponent : float
-            Exponent of objective function
-        min_error : float
-            The threshold at which if the objective function does not change by
-            more than this, the iterations are stopped.
-        max_iter : int
-             Maximum number of iterations
-
-        Returns
-        -------
-        self : FuzzyCMeans
-            An instantiated class of FuzzyCMeans, ready for clustering!
-        """
-        self.n_clusters = n_clusters
-        self.exponent = exponent
-        self.min_error = min_error
-        self.max_iter = max_iter
-
-    def fit(self, data, prob_thresh=None):
-        """Fit the data to the number of clusters
-
-        Parameters
-        ----------
-        data : numpy.array
-            A numpy array of values (no NAs!) in the same format as required
-            by scikit-learn, that in the shape [n_samples, n_features]
-        """
-        cluster_centers, fuzzy_matrix, initial_guess, distance_matrix, \
-            objective_function_history, n_iter, fuzzy_partition_coeff = \
-            skfuzzy.cmeans(data.T, c=self.n_clusters, m=self.exponent,
-                          error=self.min_error, maxiter=self.max_iter)
-
-        # rewrite as sklearn terminology
-        self.cluster_centers_ = cluster_centers
-        self.probability_of_labels = fuzzy_matrix
-        self.labels_ = np.apply_along_axis(np.argmax, axis=0, arr=self.probability_of_labels)
-
-        # Adjust labels for everything that didn't have a cluster membership
-        # prob >= prob_thresh
-        if prob_thresh is not None:
-            self.unclassifiable = (self.probability_of_labels >= prob_thresh)\
-                                      .sum(axis=0) == 0
-            self.labels_[self.unclassifiable] = -1
-
-        self.distance_matrix = distance_matrix
-        self.objective_function_history = objective_function_history
-        self.n_iter = n_iter
-        self.fuzzy_partition_coeff = fuzzy_partition_coeff
+# class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
+#     """Class for Fuzzy C-means clustering in scikit-learn cluster class format
+#
+#     Implements the objective function as described:
+#     http://en.wikipedia.org/wiki/Fuzzy_clustering
+#
+#     Parameters
+#     ----------
+#     n_clusters : int
+#         number of clusters to estimate
+#     exponent : float
+#         Exponent of objective function
+#     min_error : float
+#         The threshold at which if the objective function does not change by
+#         more than this, the iterations are stopped.
+#     max_iter : int
+#          Maximum number of iterations
+#
+#     Attributes
+#     ----------
+#     `cluster_centers_` : array, [n_clusters, n_features]
+#         Coordinates of cluster centers
+#
+#     `labels_` :
+#         Labels of each point
+#
+#     `inertia_` : float
+#         The value of the inertia criterion associated with the chosen
+#         partition.
+#
+#     Methods
+#     -------
+#     fit
+#         Like sklearn.cluster.KMeans, fit a matrix with samples to classify on
+#         the rows and features on the columns to the number of clusters.
+#         Basically, 'perform clustering'
+#     """
+#     def __init__(self, n_clusters=8, exponent=2, min_error=0.01, max_iter=100):
+#         """Initialize a Fuzzy C-Means clusterer
+#
+#         Parameters
+#         ----------
+#         n_clusters : int
+#             number of clusters to estimate
+#         exponent : float
+#             Exponent of objective function
+#         min_error : float
+#             The threshold at which if the objective function does not change by
+#             more than this, the iterations are stopped.
+#         max_iter : int
+#              Maximum number of iterations
+#
+#         Returns
+#         -------
+#         self : FuzzyCMeans
+#             An instantiated class of FuzzyCMeans, ready for clustering!
+#         """
+#         self.n_clusters = n_clusters
+#         self.exponent = exponent
+#         self.min_error = min_error
+#         self.max_iter = max_iter
+#
+#     def fit(self, data, prob_thresh=None):
+#         """Fit the data to the number of clusters
+#
+#         Parameters
+#         ----------
+#         data : numpy.array
+#             A numpy array of values (no NAs!) in the same format as required
+#             by scikit-learn, that in the shape [n_samples, n_features]
+#         """
+#         cluster_centers, fuzzy_matrix, initial_guess, distance_matrix, \
+#             objective_function_history, n_iter, fuzzy_partition_coeff = \
+#             skfuzzy.cmeans(data.T, c=self.n_clusters, m=self.exponent,
+#                           error=self.min_error, maxiter=self.max_iter)
+#
+#         # rewrite as sklearn terminology
+#         self.cluster_centers_ = cluster_centers
+#         self.probability_of_labels = fuzzy_matrix
+#         self.labels_ = np.apply_along_axis(np.argmax, axis=0, arr=self.probability_of_labels)
+#
+#         # Adjust labels for everything that didn't have a cluster membership
+#         # prob >= prob_thresh
+#         if prob_thresh is not None:
+#             self.unclassifiable = (self.probability_of_labels >= prob_thresh)\
+#                                       .sum(axis=0) == 0
+#             self.labels_[self.unclassifiable] = -1
+#
+#         self.distance_matrix = distance_matrix
+#         self.objective_function_history = objective_function_history
+#         self.n_iter = n_iter
+#         self.fuzzy_partition_coeff = fuzzy_partition_coeff
 
 
 
