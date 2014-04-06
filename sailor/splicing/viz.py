@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sailor.splicing.utils import get_switchy_score_order
 from sailor.colors import dark2
-sns.set_axes_style('nogrid', 'talk')
+sns.set(style='white', context='talk')
 
 def lavalamp(psi, color=None, title='', ax=None):
     """Make a 'lavalamp' scatter plot of many spliciang events
