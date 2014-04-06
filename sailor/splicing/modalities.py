@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.linalg import norm
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 import brewer2mpl
@@ -10,12 +11,12 @@ from itertools import cycle
 from sklearn.base import BaseEstimator, ClusterMixin, TransformerMixin
 from sklearn.cluster import KMeans, spectral_clustering
 from sklearn.decomposition import PCA
-import seaborn as sns
+
 
 from sailor.splicing.utils import get_switchy_score_order
 from sailor.splicing.viz import lavalamp
 
-sns.set_axes_style('nogrid', 'talk')
+sns.set(style='white', context='talk')
 
 # class FuzzyCMeans(BaseEstimator, ClusterMixin, TransformerMixin):
 #     """Class for Fuzzy C-means clustering in scikit-learn cluster class format
