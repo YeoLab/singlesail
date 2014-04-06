@@ -1,7 +1,9 @@
+import seaborn as sns
+
 import numpy as np
 from numpy.linalg import norm
 import matplotlib.pyplot as plt
-import seaborn as sns
+
 
 
 import brewer2mpl
