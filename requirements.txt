@@ -1,9 +1,9 @@
 numpy
 scipy
 matplotlib
-pandas
+pandas>=0.13.0
 statsmodels
 patsy
-seaborn
+seaborn>=0.3
 scikit-learn
 pyamg
