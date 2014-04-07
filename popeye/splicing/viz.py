@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sailor.splicing.utils import get_switchy_score_order
-from sailor.colors import dark2
+from popeye.splicing.utils import get_switchy_score_order
+from popeye.colors import dark2
 sns.set(style='white', context='talk')
 
 def lavalamp(psi, color=None, title='', ax=None):

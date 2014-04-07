@@ -15,8 +15,8 @@ from sklearn.cluster import KMeans, spectral_clustering
 from sklearn.decomposition import PCA
 
 
-from sailor.splicing.utils import get_switchy_score_order
-from sailor.splicing.viz import lavalamp
+from popeye.splicing.utils import get_switchy_score_order
+from popeye.splicing.viz import lavalamp
 
 sns.set(style='white', context='talk')
 

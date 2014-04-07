@@ -1,5 +1,5 @@
-from sailor import parsers
-from sailor.data_model import ExpressionData, SplicingData
+from popeye import parsers
+from popeye.data_model import ExpressionData, SplicingData
 
 class Study(object):
     """

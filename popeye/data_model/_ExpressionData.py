@@ -1,4 +1,4 @@
-from sailor.data_model import Data
+from popeye.data_model import Data
 
 class ExpressionData(Data):
     """Data model for gene expression data
