@@ -1,5 +1,5 @@
 import numpy as np
-from popeye.data_model import Data
+from sailor.data_model import Data
 from sklearn.decomposition import PCA
 
 
