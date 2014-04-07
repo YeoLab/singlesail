@@ -34,5 +34,5 @@ def binify(df, binsize, vmin=0, vmax=1):
         binned[i, :] = np.histogram(row, bins=bins, normed=True)[0]
 
     columns = ['{}-{}'.format(i, j) for i, j in zip(bins, bins[1:])]
-    binned = pd.DataFrame(binned, index=df.Index, columns=columns)
+    binned = pd.DataFrame(binned, index=df.index, columns=columns)
     return binned
