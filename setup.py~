@@ -16,7 +16,7 @@ setup(name='popeye',
                        'PCA, clustering, outlier detection, splicing '
                        'modality clustering, bimodal gene expression '
                        'detection.',
-      url='http://github.com/YeoLab/popeye',
+      url='http://github.com/YeoLab/sailor',
       author='Olga Botvinnik',
       author_email='obotvinn@ucsd.edu',
       license='MIT',
