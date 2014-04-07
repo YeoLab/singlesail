@@ -22,12 +22,6 @@ class Data(object):
         """
         raise NotImplementedError
 
-    def binify(self):
-        """Bins each measurement of either splicing or expression along all
-        cells
-        """
-        raise NotImplementedError
-
     def calculate_distances(self, metric='euclidean'):
         """Creates a squareform distance matrix for clustering fun
 

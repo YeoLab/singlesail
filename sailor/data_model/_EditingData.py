@@ -1,7 +1,8 @@
+__author__ = 'olga'
 from sailor.data_model._Data import Data
 
-class ExpressionData(Data):
-    """Data model for gene expression data
+class EditingData(Data):
+    """Class for RNA-editing data
 
     Attributes
     ----------
@@ -12,12 +13,12 @@ class ExpressionData(Data):
 
     """
 
-    def __init__(self, ):
-        """Constructor for ExpressionData
+    def __init__(self, editing_matrix_filename):
+        """Constructor for EditingData
 
         Parameters
         ----------
-
+        editing_matrix_filename
 
         Returns
         -------
@@ -27,3 +28,4 @@ class ExpressionData(Data):
         ------
 
         """
+        pass

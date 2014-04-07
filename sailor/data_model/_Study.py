@@ -1,5 +1,5 @@
 from sailor import parsers
-from sailor.data_model import ExpressionData, SplicingData
+from sailor.data_model import ExpressionData, SplicingData, EditingData
 
 class Study(object):
     """
@@ -13,14 +13,14 @@ class Study(object):
 
     """
 
-    def __init__(self, sample_info_filename, expression_matrix_filename,
-                 splicing_info_filename):
+    def __init__(self, sample_info_filename, expression_matrix_filename=None,
+                 splicing_matrix_filename=None, editing_matrix_filename=None):
         """Constructor for Study object containing gene expression and
         alternative splicing data.
 
         Parameters
         ----------
-        sample_info_filename, expression_matrix_filename, splicing_info_filename
+        sample_info_filename, expression_matrix_filename, splicing_matrix_filename
 
         Returns
         -------
@@ -32,11 +32,12 @@ class Study(object):
         """
         self._sample_info_filename = sample_info_filename
         self._expression_matrix_filename = expression_matrix_filename
-        self._splicing_info_filename = splicing_info_filename
+        self._splicing_info_filename = splicing_matrix_filename
 
         self.sample_info = parsers.read_sample_info(sample_info_filename)
         self.expression = ExpressionData(expression_matrix_filename)
-        self.splicing = SplicingData(splicing_info_filename)
+        self.splicing = SplicingData(splicing_matrix_filename)
+        self.editing = EditingData(editing_matrix_filename)
 
 
     def detect_outliers(self):
