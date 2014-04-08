@@ -12,7 +12,7 @@ class ExpressionData(Data):
 
     """
 
-    def __init__(self, ):
+    def __init__(self, df):
         """Constructor for ExpressionData
 
         Parameters
@@ -27,3 +27,4 @@ class ExpressionData(Data):
         ------
 
         """
+        self.df = df

@@ -4,7 +4,7 @@ from sklearn.decomposition import PCA
 
 
 class SplicingData(Data):
-    def __init__(self, psi, n_components, step=0.1,
+    def __init__(self, df, n_components, step=0.1,
                  reducer=PCA):
         """Instantiate a object for data scores with binned and reduced data
 
@@ -22,7 +22,7 @@ class SplicingData(Data):
             functions fit, transform, and have the attribute components_
 
         """
-        self.psi = psi
+        self.df = df
         self.reducer = reducer
         # self.psi_fillna_mean = self.data.T.fillna(self.data.mean(axis=1)).T
         self.step = step
@@ -30,17 +30,17 @@ class SplicingData(Data):
         self.binify().reduce()
 
     def binify(self):
-        """Bins psi scores from 0 to 1 on the provided binsize size"""
+        """Bins df scores from 0 to 1 on the provided binsize size"""
         self.bins = np.arange(0, 1+self.step, self.step)
         ncol = int(1/self.step)
-        nrow = self.psi.shape[0]
+        nrow = self.df.shape[0]
         self.binned = np.zeros((nrow, ncol))
-        for i, (name, row) in enumerate(self.psi.iterrows()):
+        for i, (name, row) in enumerate(self.df.iterrows()):
             self.binned[i,:] = np.histogram(row, bins=self.bins, normed=True)[0]
         return self
 
     def reduce(self):
-        """Reduces dimensionality of the binned psi score data
+        """Reduces dimensionality of the binned df score data
         """
         self.reducer_fit_to_binned = self.reducer(n_components=self.n_components).fit(self
                                                                     .binned)

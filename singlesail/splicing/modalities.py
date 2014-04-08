@@ -118,16 +118,16 @@ sns.set(style='white', context='talk')
 class Data(object):
     def __init__(self, psi, n_components, binsize=0.1, figure_dir='.',
                  reducer=PCA, reducer_kws=None):
-        """Instantiate a object for psi scores with binned and reduced data
+        """Instantiate a object for df scores with binned and reduced data
 
         Parameters
         ----------
-        psi : pandas.DataFrame
+        df : pandas.DataFrame
             A [n_events, n_samples] dataframe of splicing events
         n_components : int
             Number of components to use in the reducer
         binsize : float
-            Value between 0 and 1, the bin size for binning the psi scores
+            Value between 0 and 1, the bin size for binning the df scores
         reducer : sklearn.decomposition object
             An scikit-learn class that reduces the dimensionality of data
             somehow. Must accept the parameter n_components, have the
@@ -141,13 +141,13 @@ class Data(object):
         self.figure_dir = figure_dir
         self.reducer_name = str(reducer).split('.')[-1].rstrip("'>")
 
-        # self.psi_fillna_mean = self.psi.T.fillna(self.psi.mean(axis=1)).T
+        # self.psi_fillna_mean = self.df.T.fillna(self.df.mean(axis=1)).T
         self.binsize = binsize
         self.n_components = n_components
         self.binify().reduce(reducer)
 
     def binify(self):
-        """Bins psi scores from 0 to 1 on the provided binsize size"""
+        """Bins df scores from 0 to 1 on the provided binsize size"""
         self.bins = np.arange(0, 1+self.binsize, self.binsize)
         ncol = int(1/self.binsize)
         nrow = self.psi.shape[0]
@@ -157,7 +157,7 @@ class Data(object):
         return self
 
     def reduce(self, reducer):
-        """Reduces dimensionality of the binned psi score data
+        """Reduces dimensionality of the binned df score data
         """
         reducer_kws = {} if self.reducer_kws is None else self.reducer_kws
         reducer_kws.setdefault('n_components', self.n_components)
@@ -208,7 +208,7 @@ class ClusteringTester(object):
     Methods
     -------
     hist_lavalamp
-        Plot a histogram and lavalamp of psi scores from each cluster
+        Plot a histogram and lavalamp of df scores from each cluster
     pca_viz
         Vizualize the clusters on the PCA of the data
     """
@@ -225,7 +225,7 @@ class ClusteringTester(object):
             method, and create the attributes labels_
         reduced : str
             Specified which PCA-reduced data to use. Either the
-            histogram-binned data ("binned") or the raw psi scores ("psi")
+            histogram-binned data ("binned") or the raw df scores ("df")
         """
         self.data = data
         self.reduced = self._get_reduced(reduced)
@@ -279,28 +279,28 @@ class ClusteringTester(object):
         Parameters
         ----------
         reduced : str
-            Either "binned" or "psi"
+            Either "binned" or "df"
 
         Returns
         -------
         reduced_data : numpy.array
             The PCA-reduced data from the specified array
         """
-        # if reduced.lower() == 'psi':
+        # if reduced.lower() == 'df':
         #     reduced_data = self.data.reduced_psi
         if reduced.lower() == 'binned':
         # elif reduced.lower() == 'binned':
             reduced_data = self.data.reduced_binned
         else:
-            raise ValueError('only "psi" can be specified as a reduced '
+            raise ValueError('only "df" can be specified as a reduced '
                              'dataset. the option for this is historic and I '
                              'am keeping it around just in case.')
-            # raise ValueError('Reduced data must be specified as one of "psi" '
+            # raise ValueError('Reduced data must be specified as one of "df" '
             #                  'or "binned", not {}'.format(reduced))
         return reduced_data
 
     def _hist(self, ax, label, color):
-        """Plot histograms of the psi scores of one label"""
+        """Plot histograms of the df scores of one label"""
         ax.hist(self.data.psi.ix[self.data.psi.index[self.labels == label],:].values.flat,
                 bins=np.arange(0, 1.05, 0.05), facecolor=color, linewidth=0.1)
         ax.set_title('Cluster: {}'.format(label))
@@ -308,7 +308,7 @@ class ClusteringTester(object):
         sns.despine()
 
     def _lavalamp(self, ax, label, color):
-        """makes a lavalamp of psi scores of one label"""
+        """makes a lavalamp of df scores of one label"""
         ind = self.labels == label
         n_events = (ind).sum()
         y = self.data.psi.ix[self.data.psi.index.values[ind], :]

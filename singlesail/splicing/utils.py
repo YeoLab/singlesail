@@ -2,7 +2,7 @@ import numpy as np
 
 
 def switchy_score(array):
-    """Transform a 1D array of psi scores to a vector of "switchy scores"
+    """Transform a 1D array of df scores to a vector of "switchy scores"
 
     Calculates std deviation and mean of sine- and cosine-transformed
     versions of the array. Better than sorting by just the mean which doesn't
@@ -27,7 +27,7 @@ def switchy_score(array):
     return variance * mean_value
 
 def get_switchy_score_order(x):
-    """Apply switchy scores to a 2D array of psi scores
+    """Apply switchy scores to a 2D array of df scores
 
     Parameters
     ----------

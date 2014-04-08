@@ -13,7 +13,7 @@ class EditingData(Data):
 
     """
 
-    def __init__(self, editing_matrix_filename):
+    def __init__(self, df):
         """Constructor for EditingData
 
         Parameters
@@ -28,4 +28,4 @@ class EditingData(Data):
         ------
 
         """
-        pass
+        self.df = df

@@ -12,7 +12,7 @@ def lavalamp(psi, color=None, title='', ax=None):
 
     Parameters
     ----------
-    psi : array
+    df : array
         A (n_events, n_samples) matrix either as a numpy array or as a pandas
         DataFrame
 
