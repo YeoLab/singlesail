@@ -1,10 +1,11 @@
 import numpy as np
 from singlesail.data_model._Data import Data
+from singlesail import compute
 from sklearn.decomposition import PCA
 
 
 class SplicingData(Data):
-    def __init__(self, df, n_components, step=0.1,
+    def __init__(self, df, n_components=2, binsize=0.1,
                  reducer=PCA):
         """Instantiate a object for data scores with binned and reduced data
 
@@ -25,19 +26,20 @@ class SplicingData(Data):
         self.df = df
         self.reducer = reducer
         # self.psi_fillna_mean = self.data.T.fillna(self.data.mean(axis=1)).T
-        self.step = step
+        self.binsize = binsize
         self.n_components = n_components
-        self.binify().reduce()
+        self.binned = compute.utils.binify(self.df, binsize=self.binsize)
+        self.reduce()
 
-    def binify(self):
-        """Bins df scores from 0 to 1 on the provided binsize size"""
-        self.bins = np.arange(0, 1+self.step, self.step)
-        ncol = int(1/self.step)
-        nrow = self.df.shape[0]
-        self.binned = np.zeros((nrow, ncol))
-        for i, (name, row) in enumerate(self.df.iterrows()):
-            self.binned[i,:] = np.histogram(row, bins=self.bins, normed=True)[0]
-        return self
+    # def binify(self):
+    #     """Bins df scores from 0 to 1 on the provided binsize size"""
+    #     self.bins = np.arange(0, 1+self.binsize, self.binsize)
+    #     ncol = int(1/self.binsize)
+    #     nrow = self.df.shape[0]
+    #     self.binned = np.zeros((nrow, ncol))
+    #     for i, (name, row) in enumerate(self.df.iterrows()):
+    #         self.binned[i,:] = np.histogram(row, bins=self.bins, normed=True)[0]
+    #     return self
 
     def reduce(self):
         """Reduces dimensionality of the binned df score data
