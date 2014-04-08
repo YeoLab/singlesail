@@ -63,4 +63,4 @@ def lavalamp(psi, color=None, title='', ax=None):
     ax.set_title(title)
 
     # Return the figure for saving
-    return fig
+    # return fig
