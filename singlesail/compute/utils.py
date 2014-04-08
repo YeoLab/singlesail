@@ -25,7 +25,7 @@ def binify(df, binsize, vmin=0, vmax=1):
 
     """
     bins = np.arange(vmin, vmax + binsize, binsize)
-    ncol = bins.shape[0]
+    ncol = bins.shape[0] - 1
     nrow = df.shape[0]
     binned = np.zeros((nrow, ncol))
 
