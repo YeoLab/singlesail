@@ -1,5 +1,5 @@
 import numpy as np
-from sailor.data_model._Data import Data
+from singlesail.data_model._Data import Data
 from sklearn.decomposition import PCA
 
 

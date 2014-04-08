@@ -1,5 +1,5 @@
-from sailor import parsers
-from sailor.data_model import ExpressionData, SplicingData, EditingData
+from singlesail import parsers
+from singlesail.data_model import ExpressionData, SplicingData, EditingData
 
 class Study(object):
     """

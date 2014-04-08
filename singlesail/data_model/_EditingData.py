@@ -1,5 +1,5 @@
 __author__ = 'olga'
-from sailor.data_model._Data import Data
+from singlesail.data_model._Data import Data
 
 class EditingData(Data):
     """Class for RNA-editing data

@@ -9,14 +9,14 @@ def readme():
         return f.read()
 
 
-setup(name='sailor',
+setup(name='singlesail',
       version='0.1.0',
       description='Single-cell mRNA seq analysis package',
       long_description='Functions for common single-cell analyses such as '
                        'PCA, clustering, outlier detection, splicing '
                        'modality clustering, bimodal gene expression '
                        'detection.',
-      url='http://github.com/YeoLab/sailor',
+      url='http://github.com/YeoLab/singlesail',
       author='Olga Botvinnik',
       author_email='obotvinn@ucsd.edu',
       license='MIT',
