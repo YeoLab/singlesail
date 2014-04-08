@@ -28,7 +28,7 @@ class SplicingData(Data):
         # self.psi_fillna_mean = self.data.T.fillna(self.data.mean(axis=1)).T
         self.binsize = binsize
         self.n_components = n_components
-        self.binned = compute.utils.binify(self.df, binsize=self.binsize)
+        self.binned = compute.binify(self.df, binsize=self.binsize)
         self.reduce()
 
     def reduce(self):
