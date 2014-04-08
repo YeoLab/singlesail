@@ -13,14 +13,14 @@ class Study(object):
 
     """
 
-    def __init__(self, sample_info, expression_matrix_filename=None,
-                 splicing_matrix_filename=None, editing_matrix_filename=None):
+    def __init__(self, sample_info, expression_df=None,
+                 splicing_df=None, mapping_stats_df=None, editing_df=None):
         """Constructor for Study object containing gene expression and
         alternative splicing data.
 
         Parameters
         ----------
-        sample_info_filename, expression_matrix_filename, splicing_matrix_filename
+        sample_info_filename, expression_df, splicing_df
 
         Returns
         -------
@@ -31,14 +31,15 @@ class Study(object):
 
         """
         # self._sample_info_filename = sample_info_filename
-        # self._expression_matrix_filename = expression_matrix_filename
-        # self._splicing_info_filename = splicing_matrix_filename
+        # self._expression_matrix_filename = expression_df
+        # self._splicing_info_filename = splicing_df
+        self.mapping_stats = mapping_stats_df
 
         self.sample_info = sample_info #parsers.read_sample_info(
         # sample_info_filename)
-        self.expression = ExpressionData(expression_matrix_filename)
-        self.splicing = SplicingData(splicing_matrix_filename)
-        self.editing = EditingData(editing_matrix_filename)
+        self.expression = ExpressionData(expression_df)
+        self.splicing = SplicingData(splicing_df)
+        self.editing = EditingData(editing_df)
 
 
     def detect_outliers(self):
