@@ -27,15 +27,15 @@ class SplicingData(Data):
         self.binsize = binsize
         self.n_components = n_components
         self.binned = compute.binify(self.df, binsize=self.binsize)
-        self.reduce(reducer)
+        self.binned_reduced = self.reduce(reducer)
 
-    def reduce(self, reducer):
-        """Reduces dimensionality of the binned df score data
-        """
-        self.reducer = reducer(n_components=self.n_components).fit(self
-                                                                    .binned)
-        self.reduced_binned = self.reducer.transform(self.binned)
-        if hasattr(self.reducer, 'explained_variance_ratio_'):
-            self.plot_explained_variance(self.reducer,
-                                         '{} on binned data'.format(self.reducer))
-        return self
+    # def reduce(self, reducer):
+    #     """Reduces dimensionality of the binned df score data
+    #     """
+    #     self.reducer = reducer(n_components=self.n_components).fit(self
+    #                                                                 .binned)
+    #     self.reduced_binned = self.reducer.transform(self.binned)
+    #     if hasattr(self.reducer, 'explained_variance_ratio_'):
+    #         self.plot_explained_variance(self.reducer,
+    #                                      '{} on binned data'.format(self.reducer))
+    #     return self

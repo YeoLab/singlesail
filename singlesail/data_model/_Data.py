@@ -79,9 +79,15 @@ class Data(object):
         raise NotImplementedError
 
 
-    def reduce(self, reducer=PCA):
+    def reduce(self, data, reducer=PCA):
         """Reduces dimensionality of data, by default using PCA
 
         Q: each scatter point in PCA an event or a cell?
         """
-        raise NotImplementedError
+        self.reducer = reducer(n_components=self.n_components).fit(data)
+        reduced_data = self.reducer.transform(data)
+        if hasattr(self.reducer, 'explained_variance_ratio_'):
+            self.plot_explained_variance(self.reducer,
+                                         '{} on binned data'.format(
+                                             self.reducer))
+        return reduced_data
