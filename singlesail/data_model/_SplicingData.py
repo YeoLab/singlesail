@@ -27,7 +27,7 @@ class SplicingData(Data):
         self.binsize = binsize
         self.n_components = n_components
         self.binned = compute.binify(self.df, binsize=self.binsize)
-        self.binned_reduced = self.reduce(reducer)
+        self.binned_reduced = self.reduce(self.df, reducer)
 
     # def reduce(self, reducer):
     #     """Reduces dimensionality of the binned df score data
