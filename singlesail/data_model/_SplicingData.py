@@ -31,16 +31,6 @@ class SplicingData(Data):
         self.binned = compute.utils.binify(self.df, binsize=self.binsize)
         self.reduce()
 
-    # def binify(self):
-    #     """Bins df scores from 0 to 1 on the provided binsize size"""
-    #     self.bins = np.arange(0, 1+self.binsize, self.binsize)
-    #     ncol = int(1/self.binsize)
-    #     nrow = self.df.shape[0]
-    #     self.binned = np.zeros((nrow, ncol))
-    #     for i, (name, row) in enumerate(self.df.iterrows()):
-    #         self.binned[i,:] = np.histogram(row, bins=self.bins, normed=True)[0]
-    #     return self
-
     def reduce(self):
         """Reduces dimensionality of the binned df score data
         """
