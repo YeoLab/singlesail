@@ -106,3 +106,6 @@ def reducedplot(reduced, color=dark2[0],
     ax.set_xticks(())
     ax.set_yticks(())
     sns.despine(left=True, bottom=True)
+
+def print_hello():
+    print "hello"

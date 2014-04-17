@@ -57,7 +57,7 @@ sns.set(style='white', context='talk')
 #         the rows and features on the columns to the number of clusters.
 #         Basically, 'perform clustering'
 #     """
-#     def __init__(self, n_clusters=8, exponent=2, min_error=0.01, max_iter=100):
+#     def __in , exponent=2, min_error=0.01, max_iter=100):
 #         """Initialize a Fuzzy C-Means clusterer
 #
 #         Parameters
