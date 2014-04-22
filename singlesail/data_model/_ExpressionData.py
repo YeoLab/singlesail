@@ -30,6 +30,6 @@ class ExpressionData(Data):
         self.df = df
 
     def coeff_var(self):
-        """Plot coefficient of variance
+        """Plot coefficient of variance for all cells, then within
 
         """
