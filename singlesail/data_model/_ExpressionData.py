@@ -28,3 +28,8 @@ class ExpressionData(Data):
 
         """
         self.df = df
+
+    def coeff_var(self):
+        """Plot coefficient of variance
+
+        """

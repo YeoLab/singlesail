@@ -102,10 +102,27 @@ def reducedplot(reduced, color=dark2[0],
 
     ax.set_title(title)
     ax.set_xlim(x_min, x_max)
+
     ax.set_ylim(y_min, y_max)
     ax.set_xticks(())
     ax.set_yticks(())
     sns.despine(left=True, bottom=True)
 
-def print_hello():
-    print "hello"
+
+def add_subplot_axes(ax, rect, axisbg='w'):
+    """
+    Stolen from http://stackoverflow.com/questions/17458580/embedding-small-plots-inside-subplots-in-matplotlib
+    """
+    fig = plt.gcf()
+    box = ax.get_position()
+    width = box.width
+    height = box.height
+    inax_position = ax.transAxes.transform(rect[0:2])
+    transFigure = fig.transFigure.inverted()
+    infig_position = transFigure.transform(inax_position)
+    x = infig_position[0]
+    y = infig_position[1]
+    width *= rect[2]
+    height *= rect[3]  # <= Typo was here
+    subax = fig.add_axes([x, y, width, height], axisbg=axisbg)
+    return subax
