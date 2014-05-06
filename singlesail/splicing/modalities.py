@@ -476,7 +476,8 @@ class ClusteringTester(object):
             events = events[order]
             for event, ax in zip(events, axes):
         #         if i % 20 == 0:
-                sns.violinplot(self.data.psi.ix[event], bw=0.1, inner='points',
+                sns.violinplot(self.data.psi.ix[event].dropna(), bw=0.1,
+                               inner='points',
                                color=color, linewidth=0, ax=ax, alpha=0.75)
                 ax.set_ylim(0, 1)
                 ax.set_xticks([])
